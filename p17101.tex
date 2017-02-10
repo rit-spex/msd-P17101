@@ -17,13 +17,69 @@
 % http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
 % The documentation is contained in the cite.sty file itself.
 
+
+\title{P17101: Prototype Arcjet Satellite Thruster}
+\author{
+  Philip~Linden$^{\dagger}$\thanks{$^{\dagger}$MEng Student, Department of Mechanical Engineering},
+  James~Gandek$^{*}$\thanks{$^{*}$BS Student, Department of Mechanical Engineering},
+  Dylan~Bruce$^{*}$,
+  Matt~Giuffre$^{*}$,
+  Anthony~Higgins$^{\ddagger}$\thanks{$^{\ddagger}$BS Student, Department of Electrical Engineering},
+  David~Yin$^{\ddagger}$,
+  Vince~Burolla$^{\dagger\dagger}$\thanks{$^{\dagger\dagger}$Project Adviser}
+}
+  % page header for pages other than cover page
+  \markboth{P17101 Arcjet Thruster}%
+  {Shell \MakeLowercase{\textit{et al.}}: Multidisciplinary Senior Design, RIT}
+
 \begin{document}
-\title{Long\\Title}
-\author{Philip~Linden$^{\dag}$, James~Gandek$^{\dag\dag}$, Dylan~Bruce$^{*}$, Matt~Giuffre$^{*}$, Anthony~Higgins$^{**}$, David~Yin$^{**}$, Vince~Burolla$^{\ddag}$}
-\thanks{$^{\dag}$ (design engineer?), Department of Mechanical Engineering, MEng Student}
-\thanks{$^{\dag\dag}$Project Manager, Department of Mechanical Engineering, MEng Student}
-\thanks{$^{*}$ (build/test engineer), Department of Mechanical Engineering, BS Student}
-\thanks{$^{**}$ (lead electrical eng), Department of Electrical Engineering, BS Student}
-\thanks{$^{\section}$ Project Adviser, Multidisciplinary Senior Design, Retired}
+\maketitle
+
+\begin{abstract}
+A tabletop prototype of an arcjet electrothermal propulsion system was developed to supplement ongoing exploratory spacecraft development conducted by RIT Space Exploration (SPEX). The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems. The arcjet assembly generates an electrical arc across the thruster nozzle's throat, ionizing argon propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
+\end{abstract}
+\section{Introduction}
+Describe the customer requirements and hand wave-y context for why we are building this at all. Set the scene. Explain how electrothermal was broad, SPEX was looking for propulsion that would exceed cold-gas in efficiency.
+
+\section{Nomenclature}
+List all symbols and subscripts used for any math equations.
+
+\section{Engineering Requirements}
+List or explain the engineering requirements.
+
+\section{System Overview}
+Describe why an arcjet was selected over a resistojet.
+Also outline the main system architecture.
+Justify propellant selection (and explain paschen curve?)
+
+\subsection{Thruster Design}
+Describe the main components of the thruster and how they interact. Be sure to include material selection justifications. Show some basic analysis and predictions for performance with justification.
+
+\subsection{Power Conditioning Unit}
+Describe the inputs and desired outputs of the unit. Explain the theoretical justification behind the HV/HC approach. Describe the approach in theoretical terms and list practical limitations.
+
+\section{Testing}
+Describe the basic test plan in broad terms and how we approached testing. Describe the setup within the engine test cell and how the user interacts with the system.
+
+\subsection{Test Stand}
+Explain the physical apparatus that measures the system's outputs. Describe the interactions between the thruster and the test stand. Justify instrumentation selection.
+
+\subsection{Data Acquisition}
+Explain the DAQ hookup and justification for the DAQ, and limitations to that choice. Show and describe the VI.
+
+\subsection{Safety Measures}
+Describe risk management in more detail. Consider ommitting this section \cite{linden}.
+
+\section{Results}
+Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
+
+\section{Conclusion}
+Evaluate the success of the project and make recommendations for improving it.
+
+\section*{Acknowledgment}
+Thanks.
+
+\bibliographystyle{IEEEtran}
+\bibliography{p17101}
 
 \end{document}
