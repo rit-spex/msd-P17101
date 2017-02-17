@@ -23,5 +23,7 @@ This is the abstract for the project as a whole.
 ## Repository
 This repository controls the all revisions to the Technical Paper that describes the theory, design, and results of this project. All official documentation is controlled by the team's EDGE page, here: http://edge.rit.edu/edge/P17101/public/Home
 
+The contents of this repository are subject to the terms of the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
+
 ## Acknowledgements
 Thanks to RIT Space Exploration (SPEX) and its advisers for their support and to Boeing for sponsoring this aerospace prototype.
