@@ -18,7 +18,7 @@ David Yin, BS Student, Electrical Engineering -
 Vince Burolla, Mentor
 
 ## Abstract
-This is the abstract for the project as a whole.
+A tabletop prototype of an arcjet electrothermal propulsion system was developed to supplement ongoing exploratory spacecraft development conducted by RIT Space Exploration (SPEX). The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems. The arcjet assembly generates an electrical arc across the thruster nozzle's throat, ionizing argon propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
 
 ## Repository
 This repository controls the all revisions to the Technical Paper that describes the theory, design, and results of this project. All official documentation is controlled by the team's EDGE page, here: http://edge.rit.edu/edge/P17101/public/Home
