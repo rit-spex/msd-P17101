@@ -25,8 +25,10 @@ This repository controls the all revisions to the Technical Paper that describes
 
 The contents of this repository are subject to the terms of the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
 
-## LaTeX Dependencies
-* [booktabs](https://www.ctan.org/pkg/booktabs?lang=en) - To beautify and simplify table formatting
+## LaTeX Package Dependencies
+* [booktabs](https://www.ctan.org/pkg/booktabs?lang=en) - For table formatting
+* [siunitx](https://www.ctan.org/pkg/siunitx?lang=en) - For unit labels
+* [hyperref](https://www.ctan.org/pkg/hyperref?lang=en) - To make referencing easier
 
 ## Acknowledgements
 Thanks to RIT Space Exploration (SPEX) and its advisers for their support and to Boeing for sponsoring this aerospace prototype.
