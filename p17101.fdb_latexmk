@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex p17101"] 1487888437 "p17101.aux" "p17101.bbl" "p17101" 1487889128
+["bibtex p17101"] 1487888437 "p17101.aux" "p17101.bbl" "p17101" 1487889254
   "c:/texlive/2016/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1486593316 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "p17101.aux" 1487889127 3003 bb618a880f895fcb018cbef9f388bb6c ""
+  "p17101.aux" 1487889253 3003 bb618a880f895fcb018cbef9f388bb6c ""
   "p17101.bib" 1487881872 335 1ab669eaf4d1f71b9b702176baa35f8e ""
   (generated)
-  "p17101.bbl"
   "p17101.blg"
-["pdflatex"] 1487889125 "p17101.tex" "p17101.pdf" "p17101" 1487889128
+  "p17101.bbl"
+["pdflatex"] 1487889252 "p17101.tex" "p17101.pdf" "p17101" 1487889254
   "IEEEtran.cls" 1486670854 202657 f6698b073bb6e66a6e6436a00d85499c ""
   "c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc" 1486594902 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1486595367 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -98,12 +98,12 @@
   "c:/texlive/2016/texmf.cnf" 1486599156 673 4ae7b2f49cee444c5343a45b5d0f169c ""
   "img/cross-section_sutton.png" 1487888156 120615 304ae5d6db50da770a337012a7943aa4 ""
   "img/power-vs-isp_sutton.png" 1487881111 188404 729aea83f214f27aa4087375a0244cfb ""
-  "p17101.aux" 1487889127 3003 bb618a880f895fcb018cbef9f388bb6c ""
+  "p17101.aux" 1487889253 3003 bb618a880f895fcb018cbef9f388bb6c ""
   "p17101.bbl" 1487888438 1048 bbce8fc2e414a8d1dc60e9bc71b5a44d "bibtex p17101"
-  "p17101.out" 1487889127 926 d14a5c633ae5b2429a88745c97f90d17 ""
-  "p17101.tex" 1487889123 8246 345f8b84f931de2ad419cc6372f9af51 ""
+  "p17101.out" 1487889253 926 d14a5c633ae5b2429a88745c97f90d17 ""
+  "p17101.tex" 1487889250 8239 31935df6a5fb862936cd3c0988ecd874 ""
   (generated)
-  "p17101.out"
   "p17101.aux"
   "p17101.pdf"
   "p17101.log"
+  "p17101.out"
