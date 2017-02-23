@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage{cite}
 \usepackage{multirow}
+\usepackage{booktabs}
 
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
@@ -44,6 +45,11 @@
 \begin{abstract}
 A tabletop prototype of an arcjet electrothermal propulsion system was developed to supplement ongoing exploratory spacecraft development conducted by RIT Space Exploration (SPEX). The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems. The arcjet assembly generates an electrical arc across the thruster nozzle's throat, ionizing argon propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
 \end{abstract}
+
+\section{Nomenclature}
+\label{sec:nomenclature}
+% List all symbols and subscripts used for any math equations.
+
 \section{Introduction}
 \label{sec:intro}
 Satellites in Earth orbit for long-duration missions in excess of 5--25 years encounter perturbations to their trajectories over time from residual atmospheric and orbital particles, or from variations in Earth's gravity field.
@@ -63,63 +69,37 @@ A tabletop version does not require integration with a spacecraft, and mass and 
 RIT Space Exploration (SPEX) provided a hypothetical use-case to serve as the foundation for this exploration into satellite propulsion.
 SPEX's hypothetical mission objective is to design a communicaitons satellite that is capable of maintaining a polar geostationary orbit for 10 years.
 
-\section{Nomenclature}
-\label{sec:nomenclature}
-List all symbols and subscripts used for any math equations.
-
-\section{Customer Requirements}
-\label{sec:creqs}
-The project team collaborated with SPEX to develop customer requirements describing the key characteristics of the system delivered to SPEX, summarized in Table~\ref{tab:creqs-table}.
-\begin{table}
-  \caption{Customer requirements (needs)}
-\label{tab:creqs-table}
-  \begin{tabular}{c c p{1.9in}}
-    \hline
-    \textbf{Category} & \textbf{Requirement} & \textbf{Description} \\
-    \hline
-    \multirow{7}{*}{Performance} & CR1 & Thruster provides capability for station keeping over 10 year lifespan. \\
-    & CR2 & Thruster should have a design life of 1000 seconds. \\
-    & CR3 & Thruster should support continuous firing for an appreciable amount of time. \\
-    & CR4 & Thruster can operate in continuous or rapidly pulsed mode. \\
-    \hline
-    \multirow{5}{*}{Integration} & CR5 & Thruster may be controlled from an independent computer module or through the main satellite avionics system. \\
-    & CR6 & The system should allow for additional thrusters to share a tank. \\
-    \hline
-  \end{tabular}
-\end{table}
-
-\section{Engineering Requirements}
-\label{sec:ereqs}
-List or explain the engineering requirements.
+\section{Design Methodology}
+\label{sec:method}
+% Describe why an arcjet was selected over a resistojet.
+% Justify propellant selection (and explain paschen curve?)
 
 \section{System Overview}
-Describe why an arcjet was selected over a resistojet.
-Also outline the main system architecture.
-Justify propellant selection (and explain paschen curve?)
+% outline the main system architecture.
 
 \subsection{Thruster Design}
-Describe the main components of the thruster and how they interact. Be sure to include material selection justifications. Show some basic analysis and predictions for performance with justification.
+% Describe the main components of the thruster and how they interact. Be sure to include material selection justifications. Show some basic analysis and predictions for performance with justification.
 
 \subsection{Power Conditioning Unit}
-Describe the inputs and desired outputs of the unit. Explain the theoretical justification behind the HV/HC approach. Describe the approach in theoretical terms and list practical limitations.
+% Describe the inputs and desired outputs of the unit. Explain the theoretical justification behind the HV/HC approach. Describe the approach in theoretical terms and list practical limitations.
 
 \section{Testing}
-Describe the basic test plan in broad terms and how we approached testing. Describe the setup within the engine test cell and how the user interacts with the system.
+% Describe the basic test plan in broad terms and how we approached testing. Describe the setup within the engine test cell and how the user interacts with the system.
 
 \subsection{Test Stand}
-Explain the physical apparatus that measures the system's outputs. Describe the interactions between the thruster and the test stand. Justify instrumentation selection.
+% Explain the physical apparatus that measures the system's outputs. Describe the interactions between the thruster and the test stand. Justify instrumentation selection.
 
 \subsection{Data Acquisition}
-Explain the DAQ hookup and justification for the DAQ, and limitations to that choice. Show and describe the VI\@.
+% Explain the DAQ hookup and justification for the DAQ, and limitations to that choice. Show and describe the VI\@.
 
 \subsection{Safety Measures}
-Describe risk management in more detail. Consider ommitting this section~\cite{linden}.
+% Describe risk management in more detail. Consider ommitting this section~\cite{linden}.
 
 \section{Results}
-Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
+% Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
 
-\section{Conclusion}
-Evaluate the success of the project and make recommendations for improving it.
+\section{Conclusions and Recommendations}
+% Evaluate the success of the project and make recommendations for improving it.
 
 \section*{Acknowledgment}
 Thanks.
