@@ -4,6 +4,8 @@
 \usepackage{cite}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage[pdftex,breaklinks,pdfauthor={MSD Team P17101},pdfcreator={Philip Linden},pdftitle={Prototype Arcjet Satellite Thruster}]{hyperref}
 
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
@@ -52,27 +54,52 @@ A tabletop prototype of an arcjet electrothermal propulsion system was developed
 
 \section{Introduction}
 \label{sec:intro}
-Satellites in Earth orbit for long-duration missions in excess of 5--25 years encounter perturbations to their trajectories over time from residual atmospheric and orbital particles, or from variations in Earth's gravity field.
+RIT Space Exploration (SPEX) provided a hypothetical use-case to serve as the foundation for this exploration into satellite propulsion.
+SPEX's hypothetical mission objective is to design a communicaitons satellite that is capable of maintaining a polar geostationary orbit for 10 years.
+
+In practice, satellites in Earth orbit for long-duration missions in excess of 5--25 years encounter perturbations to their trajectories over time from residual atmospheric and orbital particles, or from variations in Earth's gravity field.
 These spacecraft perform short station-keeping maneuvers periodically to compensate for drift and orbital decay.
 
 An electrothermal rocket engine is method of propulsion by which an inert gas stored at ambient temperature (cold gas) is released from a pressurized vessel or driven by a pump and heated electrically before being expelled out of a nozzle.
 Two proven methods of electrothermal propulsion are \emph{resistojets}, which use conventional heat exchangers to heat the propellant, and \emph{arcjets}, which pass the propellant through an electrical arc to heat the gas.
 
-This type of propulsion system is advantageous for use by long-life satellites since the engines may be small in size, have few moving parts, and do not use combustible fuels.
-Resistojet and arcjet engines produce less thrust than chemical rocket engines, but are more efficient, do not require ignition, and are easy to store for long periods.
+Electrothermal propulsion is advantageous over conventional chemical or cold-gas rockets for use by long-life satellites since the engines may be small in size, have no moving parts, and are more efficient at the expense of thrust.
+While resistojets and arcjets require more elecrical power than chemical rockets, for example, the electrical energy may be recovered over time by photovoltaic panels, for example, whereas propellant fuel is a finite resource for these spacecraft.
 
-An arcjet, while more technically challenging, offers greater potential gains in efficiency over a resistojet thruster.
-%\cite{source}
 A tabletop prototype thruster was designed and tested to explore the feasibility of this type of system with less strict requirements compared to the limitations of building a flight-worthy system.
 A tabletop version does not require integration with a spacecraft, and mass and spatial limitations are relaxed.
-
-RIT Space Exploration (SPEX) provided a hypothetical use-case to serve as the foundation for this exploration into satellite propulsion.
-SPEX's hypothetical mission objective is to design a communicaitons satellite that is capable of maintaining a polar geostationary orbit for 10 years.
 
 \section{Design Methodology}
 \label{sec:method}
 % Describe why an arcjet was selected over a resistojet.
+In low power (\SI{1}{\kilo\watt}) applications, an arcjet offers up to 200\% gains in efficiency over a resistojet thruster~\cite{sutton}.
+\autoref{fig:power-vs-isp} identifies the typical use cases and performance characteristics of arcjets compared to various other types of electrothermal thrusters.
+Arcjets achieve a greater \emph{specific impulse} compared to resistojets but produce less thrust.
+Thus a maneuver would take a longer amount of time using an arcjet but would consume less propellant overall for the same maneuver as compared to a resistojet.
+\begin{figure}[hbp]
+  \centering
+  \includegraphics[width=\linewidth]{img/power-vs-isp_sutton}
+  \caption[Types of electrothermal propulsion]{Types of electrothermal propulsion with respect to typical performance and mission utility.
+  In the \SI{1}{\kilo\watt} range, arcjets typically have a higher specific impulse than resistojets. (Sutton~2010)
+\label{fig:power-vs-isp}}
+\end{figure}
+
+\subsection{Gas Dynamics}
 % Justify propellant selection (and explain paschen curve?)
+
+% High level gas dynamics analysis
+\begin{figure}[hbp]
+  \centering
+  \includegraphics[width=\linewidth]{img/cross-section_sutton}
+  \caption[Arcjet cross-section]{A cross sectional view of a typical arcjet shows the expected thermal profile in the anode (nozzle) and the expected location of the electric current. (Sutton~2010)
+\label{fig:x-section-sutton}}
+\end{figure}
+
+\subsection{Power Conditioning}
+% Explain how the PCU works
+
+\subsection{Test Signal Amplification}
+% Test stand theory
 
 \section{System Overview}
 % outline the main system architecture.
@@ -101,8 +128,8 @@ SPEX's hypothetical mission objective is to design a communicaitons satellite th
 \section{Conclusions and Recommendations}
 % Evaluate the success of the project and make recommendations for improving it.
 
-\section*{Acknowledgment}
-Thanks.
+\section*{Acknowledgments}
+The team thanks Vince Burolla for his unwavering support, Dr.\ Dorin Patru and Dr.\ Chris Hoople for their technical advice; Formula SAE, the Multidisciplinary Senior Design Department, and the Kate Gleason College of Engineering for their resources and workspaces; RIT Space Exploration and Boeing for sponsoring this project.
 
 \bibliographystyle{IEEEtran}
 \bibliography{p17101}
