@@ -6,7 +6,8 @@
 \usepackage{booktabs}
 \usepackage{siunitx}
 \usepackage[pdftex,breaklinks,pdfauthor={MSD Team P17101},pdfcreator={Philip Linden},pdftitle={P17101 Arcjet Thruster}]{hyperref}
-
+\usepackage{nomencl}
+\makenomenclature{}
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of IEEE. Loading the cite package will
@@ -46,9 +47,10 @@
 A tabletop prototype of an arcjet electrothermal propulsion system was developed to supplement ongoing exploratory spacecraft development conducted by RIT Space Exploration (SPEX). The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems. The arcjet assembly generates an electrical arc across the thruster nozzle's throat, ionizing argon propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
 \end{abstract}
 
-\section{Nomenclature}
 \label{sec:nomenclature}
 % List all symbols and subscripts used for any math equations.
+\nomenclature{$I_{sp}$}{Specific impulse}
+\printnomenclature{}
 
 \section{Introduction}
 \label{sec:intro}
@@ -84,12 +86,15 @@ Thus a maneuver would take a longer amount of time using an arcjet but would con
 
 \subsection{Gas Dynamics}
 % Justify propellant selection (and explain paschen curve?)
-
+The ideal propellant for arcjet engines is one which can be stored easily, has a low atomic mass, and favorable thermodynamic conditions during heating and expansion.
+NASA identifies Hydrogen (H$_{2}$), Ammonia (NH$_{3}$), and Hydrazine (N$_{2}$H$_{3}$) as ideal propellants for arcjets~\cite{nasa1}.
+Unfortunately, these gases are toxic or difficult to handle on a university campus.
+Nitrogen (N$_{2}$) is an easy-to-handle alternative that has relatively favorable ionization and thermodynamic characteristics, and has been used in similar low-power arcjet demonstrations~\cite{olin,olinsim}.
 % High level gas dynamics analysis
 \begin{figure}[htp]
   \centering
-  \includegraphics[width=\linewidth]{figs/cross-section_sutton}
-  \caption[Arcjet cross-section]{A cross sectional view of a typical arcjet shows the expected thermal profile in the anode (nozzle) and the expected location of the electric current. (Sutton~2010)
+  \includegraphics[width=\linewidth]{figs/cross-section_nasa}
+  \caption[Arcjet cross-section]{A cross sectional view of a typical arcjet shows the expected flowpath of propellant and the expected region of the electric current arc. The propellant is ionized and heated by the arc then expanded through the nozzle. (NASA~GRC~1992)
 \label{fig:x-section-sutton}}
 \end{figure}
 
