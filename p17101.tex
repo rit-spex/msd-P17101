@@ -49,7 +49,14 @@ A tabletop prototype of an arcjet electrothermal propulsion system was developed
 
 \label{sec:nomenclature}
 % List all symbols and subscripts used for any math equations.
+% This will add the units
+%----------------------------------------------
+\newcommand{\nomunit}[1]{%
+\renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+%----------------------------------------------
 \nomenclature{$I_{sp}$}{Specific impulse}
+\nomenclature{$g_0$}{Standard acceleration due to gravity
+  \nomunit{\,\SI{9.81}{\meter\per\second\squared}}}
 \printnomenclature{}
 
 \section{Introduction}
@@ -95,8 +102,15 @@ Nitrogen (N$_{2}$) is an easy-to-handle alternative that has relatively favorabl
   \centering
   \includegraphics[width=\linewidth]{figs/cross-section_nasa}
   \caption[Arcjet cross-section]{A cross sectional view of a typical arcjet shows the expected flowpath of propellant and the expected region of the electric current arc. The propellant is ionized and heated by the arc then expanded through the nozzle. (NASA~GRC~1992)
-\label{fig:x-section-sutton}}
+\label{fig:x-section-nasa}}
 \end{figure}
+
+Gas enters the chamber and is ionized and heated by a high-current arc that extends from the cathode to the throat of the anodic nozzle to form a plasma.
+In the ideal case, the plasma reaches sonic speed in the throat and is supersonically accelerated as it expands through the nozzle.
+
+% some calculations?
+% explain influence of backpressure
+% how much energy transferred from arc to plasma?
 
 \subsection{Power Conditioning}
 % Explain how the PCU works
