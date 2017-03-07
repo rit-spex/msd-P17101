@@ -8,6 +8,7 @@
 \usepackage[pdftex,breaklinks,pdfauthor={MSD Team P17101},pdfcreator={Philip Linden},pdftitle={P17101 Arcjet Thruster}]{hyperref}
 \usepackage{nomencl}
 \makenomenclature{}
+
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of IEEE. Loading the cite package will
@@ -27,12 +28,12 @@
 
 \title{P17101: Design and Characterization of a 1kW Arcjet Thruster Tabletop Technology Demonstrator}
 \author{
-  Philip~Linden$^{\dagger}$\thanks{$^{\dagger}$MEng Student, Department of Mechanical Engineering},
-  James~Gandek$^{*}$\thanks{$^{*}$BS Student, Department of Mechanical Engineering},
-  Dylan~Bruce$^{*}$,
-  Matt~Giuffre$^{*}$,
+  Philip~Linden$^{*}$\thanks{$^{*}$MEng Student, Department of Mechanical Engineering},
+  James~Gandek$^{\dagger}$\thanks{$^{\dagger}$BS Student, Department of Mechanical Engineering},
+  Dylan~Bruce$^{\dagger}$,
+  Matt~Giuffre$^{\dagger}$,
   Anthony~Higgins$^{\ddagger}$\thanks{$^{\ddagger}$BS Student, Department of Electrical Engineering},
-  David~Yin$^{\ddagger}$
+  David~Yin$^{\ddagger\S}$\thanks{$^{\S}$Only contributed to MSD I}
 }
   % page header for pages other than cover page
   \markboth{P17101 Arcjet Thruster}%
@@ -54,6 +55,13 @@ A tabletop prototype of an arcjet electrothermal propulsion system was developed
 \newcommand{\nomunit}[1]{%
 \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
 %----------------------------------------------
+% gas dynamics
+\nomenclature{$A$}{Cross-sectional area of nozzle}
+\nomenclature{$p$}{Gas pressure}
+\nomenclature{$v$}{Gas flow velocity}
+\nomenclature{$\dot{m}$}{Gas mass flow rate}
+% rocket equations
+\nomenclature{$F$}{Thrust}
 \nomenclature{$I_{sp}$}{Specific impulse}
 \nomenclature{$g_0$}{Standard acceleration due to gravity
   \nomunit{\,\SI{9.81}{\meter\per\second\squared}}}
@@ -79,7 +87,7 @@ A tabletop version does not require integration with a spacecraft, and mass and 
 \section{Design Methodology}
 \label{sec:method}
 % Describe why an arcjet was selected over a resistojet.
-In low power (\SI{1}{\kilo\watt}) applications, an arcjet offers up to 200\% gains in efficiency over a resistojet thruster~\cite{sutton}.
+In low power (\SI{1}{\kilo\watt}) applications, an arcjet offers up to 200\% gains in efficiency over a resistojet thruster~\cite{sutton2010rocket}.
 \autoref{fig:power-vs-isp} identifies the typical use cases and performance characteristics of arcjets compared to various other types of electrothermal thrusters.
 Arcjets achieve a greater specific impulse compared to resistojets but produce less thrust.
 Thus a maneuver would take a longer amount of time using an arcjet but would consume less propellant overall for the same maneuver as compared to a resistojet.
@@ -94,19 +102,27 @@ Thus a maneuver would take a longer amount of time using an arcjet but would con
 \subsection{Gas Dynamics}
 % Justify propellant selection (and explain paschen curve?)
 The ideal propellant for arcjet engines is one which can be stored easily, has a low atomic mass, and favorable thermodynamic conditions during heating and expansion.
-NASA identifies Hydrogen (H$_{2}$), Ammonia (NH$_{3}$), and Hydrazine (N$_{2}$H$_{3}$) as ideal propellants for arcjets~\cite{nasa1}.
+NASA identifies Hydrogen (H$_{2}$), Ammonia (NH$_{3}$), and Hydrazine (N$_{2}$H$_{3}$) as ideal propellants for arcjets~\cite{nasa1992considerations}.
 Unfortunately, these gases are toxic or difficult to handle on a university campus.
-Nitrogen (N$_{2}$) is an easy-to-handle alternative that has relatively favorable ionization and thermodynamic characteristics, and has been used in similar low-power arcjet demonstrations~\cite{olin,olinsim}.
+Nitrogen (N$_{2}$) is an easy-to-handle alternative that has relatively favorable ionization and thermodynamic characteristics, and has been used in similar low-power arcjet demonstrations~\cite{olin2012report,olin2012sim}.
 % High level gas dynamics analysis
 \begin{figure}[htp]
   \centering
   \includegraphics[width=\linewidth]{figs/cross-section_nasa}
   \caption[Arcjet cross-section]{A cross sectional view of a typical arcjet shows the expected flowpath of propellant and the expected region of the electric current arc. The propellant is ionized and heated by the arc then expanded through the nozzle. (NASA~GRC~1992)
-\label{fig:x-section-nasa}}
+\label{fig:x-section-nasa}
+}
 \end{figure}
 
 Gas enters the chamber and is ionized and heated by a high-current arc that extends from the cathode to the throat of the anodic nozzle to form a plasma.
 In the ideal case, the plasma reaches sonic speed in the throat and is supersonically accelerated as it expands through the nozzle.
+
+Thrust is a function of the momentum of the flow exiting the nozzle.
+\begin{equation}
+\label{eq:thrust}
+F=\dot{m}v_e + (p_e-p_b)A_e
+\end{equation}
+ where $F$ is thrust, $v$ is flow velocity, $A$ is nozzle cross sectional area, and subscripts $e$ denotes parameters at the nozzle exit and $p_b$ denotes ambient backpressure.
 
 % some calculations?
 % explain influence of backpressure
@@ -114,6 +130,13 @@ In the ideal case, the plasma reaches sonic speed in the throat and is supersoni
 
 \subsection{Power Conditioning}
 % Explain how the PCU works
+The electrical arc used to add energy to the gas is generated and sustained by the Power Conditioning Unit (PCU).
+The PCU consists of high-voltage (HV) and high-current (HC) modes.
+The HV side of the circuit initiates the arc, then the PCU switches to the HC ``side'' of the circuit to sustain a high-current arc.
+This architecture is similar to a plasma torch and has been demonstrated in similar tabletop systems~\cite{park2015thesis}.
+% explain HV side theory here
+When the arc jumps between the cathode and anode across the flowpath, it closes the HC portion of the circuit. This current induces a redd switch to open, turning off the HV side of the PCU.@
+
 
 \subsection{Test Signal Amplification}
 % Test stand theory
