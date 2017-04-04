@@ -34,11 +34,7 @@
   Dylan~Bruce$^{\dagger}$,
   Matt~Giuffre$^{\dagger}$,
   Anthony~Higgins$^{\ddagger}$\thanks{$^{\ddagger}$BS Student, Department of Electrical Engineering},
-<<<<<<< HEAD
-  % David~Yin$^{\ddagger\S}$\thanks{$^{\S}$Only contributed to MSD I}
-=======
   David~Yin$^{\ddagger\S}$\thanks{$^{\S}$Only contributed to MSD I}
->>>>>>> refs/remotes/origin/wallops
 }
   % page header for pages other than cover page
   \markboth{P17101 Arcjet Thruster}%
@@ -61,15 +57,6 @@ A tabletop prototype of an arcjet electrothermal propulsion system was developed
 \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
 %----------------------------------------------
 % gas dynamics
-<<<<<<< HEAD
-\nomenclature{$A$}{Cross-sectional area of nozzle}
-\nomenclature{$p$}{Gas pressure}
-\nomenclature{$v$}{Gas flow velocity}
-\nomenclature{$\dot{m}$}{Gas mass flow rate}
-% rocket equations
-\nomenclature{$F$}{Thrust}
-\nomenclature{$I_{sp}$}{Specific impulse}
-=======
 \nomenclature{$A$}{Cross-sectional area of nozzle
   \nomunit{\,\si{\meter\squared}}}
 \nomenclature{$p$}{Gas pressure
@@ -85,7 +72,6 @@ A tabletop prototype of an arcjet electrothermal propulsion system was developed
   \nomunit{\,\si{\newton}}}
 \nomenclature{$I_{sp}$}{Specific impulse
   \nomunit{\,\si{\second}}}
->>>>>>> refs/remotes/origin/wallops
 \nomenclature{$g_0$}{Standard acceleration due to gravity
   \nomunit{\,\SI{9.81}{\meter\per\second\squared}}}
 \printnomenclature{}
@@ -142,13 +128,6 @@ In the ideal case, the plasma reaches sonic speed in the throat and is supersoni
 Thrust is a function of the momentum of the flow exiting the nozzle.
 \begin{equation}
 \label{eq:thrust}
-<<<<<<< HEAD
-F=\dot{m}v_e + (p_e-p_b)A_e
-\end{equation}
- where $F$ is thrust, $\dot{m}$ is mass flow rate of propellant, $v$ is flow velocity, $A$ is nozzle cross sectional area of the nozzle, and subscript $e$ denotes parameters at the nozzle exit while $p_b$ denotes atmospheric backpressure.
- In space, $p_b$ is negligible and the thruster is design around such condition.
-
-=======
   F=\dot{m}v_e + (p_e-p_b)A_e
 \end{equation}
  Where $F$ is thrust, $\dot{m}$ is mass flow rate of propellant, $v$ is flow velocity, $A$ is nozzle cross sectional area of the nozzle, and subscript $e$ denotes parameters at the nozzle exit while $p_b$ denotes atmospheric backpressure.
@@ -159,7 +138,6 @@ F=\dot{m}v_e + (p_e-p_b)A_e
  \label{eq:isp}
    I_{sp}=\frac{F}{\dot{m} g_0}
  \end{equation}
->>>>>>> refs/remotes/origin/wallops
 % some calculations?
 In the ideal condition using gaseous N$_2$ as propellant, a conical nozzle with $\alpha=50$ is capable of \SI{0}{\newton} of thrust without a sustained arc.
 At sea-level, \SI{0}{\newton} of thrust is expected.
@@ -171,7 +149,6 @@ At sea-level, \SI{0}{\newton} of thrust is expected.
 % outline the main system architecture.
 
 \subsection{Engine}
-=======
 \begin{table}[hbp]
   \caption{Theoretical thrust and Isp values with respect to space and sea-level operation, total pressure $p_0= $\SI{20}{psi}.
 \label{tab:theoretical-performance}
@@ -192,7 +169,6 @@ At sea-level, \SI{0}{\newton} of thrust is expected.
 \section{System Overview}
 % outline the main system architecture.
 \subsection{Thruster}
->>>>>>> refs/remotes/origin/wallops
 % Describe the main components of the thruster and how they interact. Be sure to include material selection justifications. Show some basic analysis and predictions for performance with justification.
 Propellant flows into an aluminum body and is spun into a vortex about the tip of the cathode, where it passes through an electric arc before being accelerated through a conical nozzle.
 The flow swirler is a high-temperature thermal insulator.
@@ -212,7 +188,6 @@ The electrical arc used to add energy to the gas is generated and sustained by t
 The PCU consists of high-voltage (HV) and high-current (HC) modes.
 The HV side of the circuit initiates the arc, then the PCU switches to the HC ``side'' of the circuit to sustain a high-current arc.
 This architecture is similar to a plasma torch and has been demonstrated in similar tabletop systems~\cite{park2015thesis}.
-<<<<<<< HEAD
 
 % explain HV side here
 \SI{120}{\volt} AC power is supplied to the HV side of the circuit, then the voltage is increased by a series of voltage doublers. A tungsten rod serves as the cathode of the HV circuit, and the graphite nozzle of the thruster acts as the anode.
@@ -222,7 +197,6 @@ When the arc jumps between the cathode and anode across the flowpath, it closes 
 
 \subsection{Data Acquisition \& Control}
 % Explain the DAQ hookup and justification for the DAQ, and limitations to that choice. Show and describe the VI\@.
-=======
 
 % explain HV side here
 \SI{120}{\volt} AC power is supplied to the HV side of the circuit and converted to DC by dimmable light switch.
@@ -271,7 +245,6 @@ The test engineer starts and stops a test with the VI from a computer connected 
 The MyDAQ device also collects data from all sensors used in the test stand.
 Thruster performance is quantified by measuring thrust force generated during a burn.
 Pressure inside the main body is monitored to judge the health of the system during operation and saved as a secondary performance metric.
->>>>>>> refs/remotes/origin/wallops
 
 \subsection{Test Stand}
 % Explain the physical apparatus that measures the system's outputs. Describe the interactions between the thruster and the test stand. Justify instrumentation selection.
