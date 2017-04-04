@@ -34,7 +34,11 @@
   Dylan~Bruce$^{\dagger}$,
   Matt~Giuffre$^{\dagger}$,
   Anthony~Higgins$^{\ddagger}$\thanks{$^{\ddagger}$BS Student, Department of Electrical Engineering},
+<<<<<<< HEAD
   % David~Yin$^{\ddagger\S}$\thanks{$^{\S}$Only contributed to MSD I}
+=======
+  David~Yin$^{\ddagger\S}$\thanks{$^{\S}$Only contributed to MSD I}
+>>>>>>> refs/remotes/origin/wallops
 }
   % page header for pages other than cover page
   \markboth{P17101 Arcjet Thruster}%
@@ -57,6 +61,7 @@ A tabletop prototype of an arcjet electrothermal propulsion system was developed
 \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
 %----------------------------------------------
 % gas dynamics
+<<<<<<< HEAD
 \nomenclature{$A$}{Cross-sectional area of nozzle}
 \nomenclature{$p$}{Gas pressure}
 \nomenclature{$v$}{Gas flow velocity}
@@ -64,13 +69,30 @@ A tabletop prototype of an arcjet electrothermal propulsion system was developed
 % rocket equations
 \nomenclature{$F$}{Thrust}
 \nomenclature{$I_{sp}$}{Specific impulse}
+=======
+\nomenclature{$A$}{Cross-sectional area of nozzle
+  \nomunit{\,\si{\meter\squared}}}
+\nomenclature{$p$}{Gas pressure
+  \nomunit{\,\si{\kilo\pascal}}}
+\nomenclature{$v$}{Gas flow velocity
+  \nomunit{\,\si{\meter\per\second}}}
+\nomenclature{$\dot{m}$}{Gas mass flow rate
+  \nomunit{\,\si{\kilo\gram\per\second}}}
+\nomenclature{$\alpha$}{Diverging nozzle half-angle
+  \nomunit{\,\si{\deg}}}
+% rocket equations
+\nomenclature{$F$}{Thrust
+  \nomunit{\,\si{\newton}}}
+\nomenclature{$I_{sp}$}{Specific impulse
+  \nomunit{\,\si{\second}}}
+>>>>>>> refs/remotes/origin/wallops
 \nomenclature{$g_0$}{Standard acceleration due to gravity
   \nomunit{\,\SI{9.81}{\meter\per\second\squared}}}
 \printnomenclature{}
 
 \section{Introduction}
 \label{sec:intro}
-RIT Space Exploration (SPEX) provided a hypothetical use-case to serve as the foundation for this exploration into satellite propulsion.
+\IEEEPARstart{R}{IT} Space Exploration (SPEX) provided a hypothetical use-case to serve as the foundation for this exploration into satellite propulsion.
 SPEX's hypothetical mission objective is to design a communicaitons satellite that is capable of maintaining a polar geostationary orbit for 10 years.
 
 In practice, satellites in Earth orbit for long-duration missions in excess of 5--25 years encounter perturbations to their trajectories over time from residual atmospheric and orbital particles, or from variations in Earth's gravity field.
@@ -95,7 +117,7 @@ Thus a maneuver would take a longer amount of time using an arcjet but would con
 \begin{figure}[htp]
   \centering
   \includegraphics[width=\linewidth]{figs/power-vs-isp_sutton}
-  \caption[Types of electrothermal propulsion]{Types of electrothermal propulsion with respect to typical performance and mission utility.
+  \caption[Types of electrothermal propulsion]{There are various types of electrothermal propulsion with respect to typical performance and mission utility.
   In the \SI{1}{\kilo\watt} range, arcjets typically have a higher specific impulse than resistojets. (Sutton~2010)
 \label{fig:power-vs-isp}}
 \end{figure}
@@ -120,22 +142,69 @@ In the ideal case, the plasma reaches sonic speed in the throat and is supersoni
 Thrust is a function of the momentum of the flow exiting the nozzle.
 \begin{equation}
 \label{eq:thrust}
+<<<<<<< HEAD
 F=\dot{m}v_e + (p_e-p_b)A_e
 \end{equation}
  where $F$ is thrust, $\dot{m}$ is mass flow rate of propellant, $v$ is flow velocity, $A$ is nozzle cross sectional area of the nozzle, and subscript $e$ denotes parameters at the nozzle exit while $p_b$ denotes atmospheric backpressure.
  In space, $p_b$ is negligible and the thruster is design around such condition.
 
-% some calculations?
-% explain influence of backpressure
-% how much energy transferred from arc to plasma?
+=======
+  F=\dot{m}v_e + (p_e-p_b)A_e
+\end{equation}
+ Where $F$ is thrust, $\dot{m}$ is mass flow rate of propellant, $v$ is flow velocity, $A$ is nozzle cross sectional area of the nozzle, and subscript $e$ denotes parameters at the nozzle exit while $p_b$ denotes atmospheric backpressure.
+ In space, $p_b$ is negligible and the thruster is design around such condition.
 
+ A thruster's efficiency is described in terms of specific impulse, $I_{sp}$, which may be used to compare performance with other space propulsion methods.
+ \begin{equation}
+ \label{eq:isp}
+   I_{sp}=\frac{F}{\dot{m} g_0}
+ \end{equation}
+>>>>>>> refs/remotes/origin/wallops
+% some calculations?
+In the ideal condition using gaseous N$_2$ as propellant, a conical nozzle with $\alpha=50$ is capable of \SI{0}{\newton} of thrust without a sustained arc.
+At sea-level, \SI{0}{\newton} of thrust is expected.
+
+<<<<<<< HEAD
 
 
 \section{System Overview}
 % outline the main system architecture.
 
 \subsection{Engine}
+=======
+\begin{table}[hbp]
+  \caption{Theoretical thrust and Isp values with respect to space and sea-level operation, total pressure $p_0= $\SI{20}{psi}.
+\label{tab:theoretical-performance}
+}
+  \begin{tabular}{lrrrrr}
+    \toprule
+    & & \multicolumn{2}{c}{Without arc} & \multicolumn{2}{c}{With arc} \\
+    & $p_b$ (\si{\kilo\pascal}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) \\
+    \midrule
+    Vacuum & $0$ & $0$ & $0$ & $0$ & $0$ \\
+    Sea-level & $101.3$ & $0$ & $0$ & $0$ & $0$  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% how much energy transferred from arc to plasma?
+
+\section{System Overview}
+% outline the main system architecture.
+\subsection{Thruster}
+>>>>>>> refs/remotes/origin/wallops
 % Describe the main components of the thruster and how they interact. Be sure to include material selection justifications. Show some basic analysis and predictions for performance with justification.
+Propellant flows into an aluminum body and is spun into a vortex about the tip of the cathode, where it passes through an electric arc before being accelerated through a conical nozzle.
+The flow swirler is a high-temperature thermal insulator.
+The high-temp insulator and cathode are mounted concentrically into a low-temperature PTFE thermal and electrical insulator, which is fixed to the thruster test stand.
+The nozzle is electrically insulated from the aluminum body by a non-cunductive spacer.
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=\linewidth]{figs/cutaway_annotated.png}
+  \caption[P17101 Arcjet Annotated Cutaway]{Components that are charged or exposed to extreme heat are electrically and thermally insulated.
+\label{fig:annotated-cutaway}
+}
+\end{figure}
 
 \subsection{Power Conditioning Unit}
 % Describe the inputs and desired outputs of the unit. Explain the theoretical justification behind the HV/HC approach. Describe the approach in theoretical terms and list practical limitations.
@@ -143,6 +212,7 @@ The electrical arc used to add energy to the gas is generated and sustained by t
 The PCU consists of high-voltage (HV) and high-current (HC) modes.
 The HV side of the circuit initiates the arc, then the PCU switches to the HC ``side'' of the circuit to sustain a high-current arc.
 This architecture is similar to a plasma torch and has been demonstrated in similar tabletop systems~\cite{park2015thesis}.
+<<<<<<< HEAD
 
 % explain HV side here
 \SI{120}{\volt} AC power is supplied to the HV side of the circuit, then the voltage is increased by a series of voltage doublers. A tungsten rod serves as the cathode of the HV circuit, and the graphite nozzle of the thruster acts as the anode.
@@ -152,12 +222,65 @@ When the arc jumps between the cathode and anode across the flowpath, it closes 
 
 \subsection{Data Acquisition \& Control}
 % Explain the DAQ hookup and justification for the DAQ, and limitations to that choice. Show and describe the VI\@.
+=======
+
+% explain HV side here
+\SI{120}{\volt} AC power is supplied to the HV side of the circuit and converted to DC by dimmable light switch.
+The supplied voltage is increased to \SI{45}{\kilo\volt} by an automotive ignition coil.
+A tungsten rod serves as the cathode of the HV circuit, and the graphite nozzle of the thruster acts as the anode.
+High voltage across the gap between anode and cathode generates an arc, effectively shorting the HV circuit.
+
+\begin{figure}[htp]
+  \includegraphics[width=\linewidth]{figs/hv-schematic.png}
+  \caption{Wall AC power is converted to DC high voltage in order to initiate an arc.
+\label{fig:hv-circuit}
+}
+\end{figure}
+
+% explain HC side here
+When the arc jumps between the cathode and anode across the flowpath, current induces a reed switch to open, opening the HV side of the PCU and completing the HC side of the circuit.
+\emph{Anthony, please explain how the high current components are structured to condition supply power to high current.}
+\SI{0}{\ampere} flows through the arc between anode and cathode.
+
+\begin{figure}[htp]
+  \includegraphics[width=\linewidth]{figs/hc-schematic.png}
+  \caption{Anthony, please explain the high current circuit here.
+\label{fig:hc-circuit}
+}
+\end{figure}
+
+During a burn, the PCU draws $900$--$1100$\si{\watt} from the wall outlet.
+
+\subsection{Test Stand}
+% Explain the physical apparatus that measures the system's outputs. Describe the interactions between the thruster and the test stand. Justify instrumentation selection.
+The thruster is mounted to a lever arm with its exhaust facing upward.
+The opposite arm of the lever is connected to a $0$--$0$\si{\newton} load cell.
+The weight of the thruster offsets the ``zero'' load condition such that it is sufficiently far from the sensor's floor.
+When a burn is underway, thrust force is measured as a change from the equilibrium condition.
+The [Brand Name] load cell was selected for its high resolution, as this was more cost effective than purchasing a low-force load cell.
+
+Propellant is supplied by a gaseous nitrogen dewar at \SI{0}{psi}.
+The GN$_2$ is regulated to \SI{0}{psi} before reaching a normally-closed solenoid valve.
+GN$_2$ is flowed through the system for several seconds before PCU ignition to ensure only nitrogen is present in the thruster, and after PCU shutdown to cool hot hruster components.
+
+\subsection{Data Acquisition \& Control}
+% Explain the DAQ hookup and justification for the DAQ, and limitations to that choice. Show and describe the VI.
+Operation of the PCU and propellant solenoid is nominally controlled by a Texas Instruments MyDAQ and LabVIEW Virtual Interface (VI).
+The test engineer starts and stops a test with the VI from a computer connected to the test stand. The timing of solenoid and PCU events may be programmed or toggled manually.
+
+The MyDAQ device also collects data from all sensors used in the test stand.
+Thruster performance is quantified by measuring thrust force generated during a burn.
+Pressure inside the main body is monitored to judge the health of the system during operation and saved as a secondary performance metric.
+>>>>>>> refs/remotes/origin/wallops
 
 \subsection{Test Stand}
 % Explain the physical apparatus that measures the system's outputs. Describe the interactions between the thruster and the test stand. Justify instrumentation selection.
 
 \subsection{Safety Measures}
 % Describe risk management in more detail. Consider ommitting this section~\cite{linden}.
+In the event of a computer malfunction, an emergency shutoff button is wired into the circuit between the outlet and the PCU and the solenoid is normally closed and non-latching.
+When a test is conducted, the test stand is placed in a well-ventilated Formula SAE engine test cell, and the control computer is located outside the testing room.
+The VI monitors sensor data in real-time and shuts down operation when sensor parameters reach unsafe limits.
 
 \section{Test Procedure}
 % Describe the basic test plan in broad terms and how we approached testing. Describe the setup within the engine test cell and how the user interacts with the system.
@@ -165,11 +288,11 @@ When the arc jumps between the cathode and anode across the flowpath, it closes 
 \section{Results}
 % Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
 
-\section{Conclusions and Recommendations}
+\section{Conclusions \& Recommendations}
 % Evaluate the success of the project and make recommendations for improving it.
 
 \section*{Acknowledgments}
-The team thanks Mr.\ Vincent Burolla for his unwavering support; the Mechanical Engineering Department, the Multidisciplinary Senior Design Department, and the Kate Gleason College of Engineering for their resources and workspaces; RIT Space Exploration and Boeing for sponsoring this project.
+The team thanks Mr.~Vincent Burolla for his unwavering support; the Mechanical Engineering Department, the Multidisciplinary Senior Design Department, and the Kate Gleason College of Engineering for their resources and workspaces; RIT Space Exploration and Boeing for sponsoring this project.
 
 \bibliographystyle{IEEEtran}
 \bibliography{p17101}
