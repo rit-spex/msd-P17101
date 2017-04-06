@@ -249,14 +249,13 @@ Once the proper channels are selected for both data acquisition (analog inputs) 
 The timing of solenoid and PCU events may also be adjusted via the front panel.
 Once the VI is started, the solenoid and PCU will be activated respectively and DAQ will begin with a live readout being shown on the waveform chart displayed on the front panel.
 When the VI is stopped, the user will be prompted to either save the data or to discard it.
-The VI may be stopped via the stop button on the front panel or by the satisfaction of a number of safety interlocks present within the block diagram.
-Examples of these interlocks are errors in the DAQ sequence, positive gauge pressure present in the thruster's main body before starting the VI, or a ten second timeout.
 
 \subsection{Safety Measures}
 % Describe risk management in more detail. Consider ommitting this section~\cite{linden}.
 In the event of a computer malfunction, an emergency shutoff button is wired into the circuit between the outlet and the PCU and the solenoid is normally closed and non-latching.
 When a test is conducted, the test stand is placed in a well-ventilated Formula SAE engine test cell, and the control computer is located outside the testing room.
-The VI monitors sensor data in real-time and shuts down operation when sensor parameters reach unsafe limits.
+The VI monitors sensor data in real-time and shuts down operation when sensor parameters reach unsafe limits, and may be stopped via the stop button on the front panel or by the satisfaction of a number of safety interlocks present within the block diagram.
+Examples of these interlocks are errors in the DAQ sequence, positive gauge pressure present in the thruster's main body before starting the VI, or a ten second timeout.
 
 % Because of some charring observed in the plywood base during circuit operation, an informal test was performed on the power resistors under operational conditions to gain an estimate on the temperature changes over time.
 % The graphs below show the average temperature increase is 7.4F per second. The charring temperature of wood is 250-300F, and a 10s burn would require a temperature buffer of 80-90F.
