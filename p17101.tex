@@ -1,5 +1,4 @@
 \documentclass[journal]{IEEEtran}
-\usepackage{blindtext}
 \usepackage{graphicx}
 \usepackage{cite}
 \usepackage{multirow}
@@ -28,7 +27,7 @@
 
 % http://edge.rit.edu/edge/P17101/public/Home
 
-\title{P17101: Design and Characterization of a 1kW Arcjet Thruster Tabletop Technology Demonstrator}
+\title{P17101: Design and Characterization of a 1kW Arcjet Thruster}
 \author{
   Philip~Linden$^{*}$\thanks{$^{*}$MEng Student, Department of Mechanical Engineering},
   James~Gandek$^{\dagger}$\thanks{$^{\dagger}$BS Student, Department of Mechanical Engineering},
@@ -47,7 +46,7 @@
 \hyphenation{explor-ation explor-atory}
 
 \begin{abstract}
-A tabletop prototype of an arcjet electrothermal propulsion system was developed to supplement ongoing exploratory spacecraft development conducted by RIT Space Exploration (SPEX). The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems. The arcjet assembly generates an electrical arc across the thruster nozzle's throat, ionizing argon propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
+An arcjet electrothermal propulsion system was developed to RIT Space Exploration (SPEX). The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems. The arcjet assembly generates an electrical arc across the thruster nozzle's throat, ionizing nitrogen propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
 \end{abstract}
 
 \label{sec:nomenclature}
@@ -79,17 +78,17 @@ A tabletop prototype of an arcjet electrothermal propulsion system was developed
 
 \section{Introduction}
 \label{sec:intro}
-\IEEEPARstart{R}{IT} Space Exploration (SPEX) provided a hypothetical use-case to serve as the foundation for this exploration into satellite propulsion.
-SPEX's hypothetical mission objective is to design a communicaitons satellite that is capable of maintaining a polar geostationary orbit for 10 years.
+\IEEEPARstart{R}{IT} Space Exploration (SPEX) provided a use-case scenario to serve as the basis for this exploration into satellite propulsion.
+The mission objective is to design a communicaitons satellite that is capable of maintaining a polar geostationary orbit for 10 years.
 
-In practice, satellites in Earth orbit for long-duration missions in excess of 5--25 years encounter perturbations to their trajectories over time from residual atmospheric and orbital particles, or from variations in Earth's gravity field.
+In practice, satellites in Earth orbit for long-duration missions (5--25 years) encounter perturbations to their trajectories over time from residual atmospheric and orbital particles, or from variations in Earth's gravity field.
 These spacecraft perform short station-keeping maneuvers periodically to compensate for drift and orbital decay.
 
-An electrothermal rocket engine is method of propulsion by which an inert gas stored at ambient temperature (cold gas) is released from a pressurized vessel or driven by a pump and heated electrically before being expelled out of a nozzle.
+An electrothermal rocket engine is method of propulsion by which a pressurized inert gas stored at ambient temperature (cold gas) is released and heated electrically before being expelled out of a nozzle.
 Two proven methods of electrothermal propulsion are \emph{resistojets}, which use conventional heat exchangers to heat the propellant, and \emph{arcjets}, which pass the propellant through an electrical arc to heat the gas.
 
 Electrothermal propulsion is advantageous over conventional chemical or cold-gas rockets for use by long-life satellites since the engines may be small in size, have no moving parts, and are more efficient at the expense of thrust.
-While resistojets and arcjets require more elecrical power than chemical rockets, for example, the electrical energy may be recovered over time by photovoltaic panels, for example, whereas propellant fuel is a finite resource for these spacecraft.
+While resistojets and arcjets require more elecrical power than chemical rockets, for example, the electrical energy may be recovered over time by photovoltaic panels whereas propellant fuel is a finite resource for these spacecraft.
 
 A tabletop prototype thruster was designed and tested to explore the feasibility of this type of system with less strict requirements compared to the limitations of building a flight-worthy system.
 A tabletop version does not require integration with a spacecraft, and mass and spatial limitations are relaxed.
@@ -110,7 +109,7 @@ Thus a maneuver would take a longer amount of time using an arcjet but would con
 \end{figure}
 
 % Justify propellant selection (and explain paschen curve?)
-The ideal propellant for arcjet engines is one which can be stored easily, has a low atomic mass, and favorable thermodynamic conditions during heating and expansion.
+The ideal propellant for arcjet engines is one which can be stored for long periods of time, has a low atomic mass, and favorable thermodynamic conditions during heating and expansion.
 NASA identifies Hydrogen (H$_{2}$), Ammonia (NH$_{3}$), and Hydrazine (N$_{2}$H$_{3}$) as ideal propellants for arcjets~\cite{nasa1992considerations}.
 Unfortunately, these gases are toxic or difficult to handle on a university campus.
 Nitrogen (N$_{2}$) is an easy-to-handle alternative that has relatively favorable ionization and thermodynamic characteristics, and has been used in similar low-power arcjet demonstrations~\cite{olin2012report,olin2012sim}.
@@ -124,7 +123,7 @@ Nitrogen (N$_{2}$) is an easy-to-handle alternative that has relatively favorabl
 \end{figure}
 
 Gas enters the chamber and is ionized and heated by a high-current arc that extends from the cathode to the throat of the anodic nozzle to form a plasma.
-In the ideal case, the plasma reaches sonic speed in the throat and is supersonically accelerated as it expands through the nozzle.
+The plasma reaches sonic speed in the throat and is supersonically accelerated as it expands through the nozzle.
 
 Thrust is a function of the momentum of the flow exiting the nozzle.
 \begin{equation}
@@ -143,12 +142,8 @@ Thrust is a function of the momentum of the flow exiting the nozzle.
 In the ideal condition using gaseous N$_2$ as propellant, a conical nozzle with $\alpha=50$ is capable of \SI{0}{\newton} of thrust without a sustained arc.
 At sea-level, \SI{0}{\newton} of thrust is expected.
 
-\section{System Overview}
-% outline the main system architecture.
-
-\subsection{Engine}
 \begin{table}[hbp]
-  \caption{Theoretical thrust and Isp values with respect to space and sea-level operation, total pressure $p_0= $\SI{20}{psi}.
+  \caption{Theoretical thrust and Isp values with respect to space and sea-level operation, total pressure $p_0= $\SI{137.9}{\kilo\pascal}.
 \label{tab:theoretical-performance}
 }
   \begin{tabular}{lrrrrr}
@@ -162,20 +157,19 @@ At sea-level, \SI{0}{\newton} of thrust is expected.
   \end{tabular}
 \end{table}
 
-% how much energy transferred from arc to plasma?
-
 \section{System Overview}
 % outline the main system architecture.
 \subsection{Thruster}
 % Describe the main components of the thruster and how they interact. Be sure to include material selection justifications. Show some basic analysis and predictions for performance with justification.
-Propellant flows into an aluminum body and is spun into a vortex about the tip of the cathode, where it passes through an electric arc before being accelerated through a conical nozzle.
-The flow swirler is a high-temperature thermal insulator.
-The high-temp insulator and cathode are mounted concentrically into a low-temperature PTFE thermal and electrical insulator, which is fixed to the thruster test stand.
-The nozzle is electrically insulated from the aluminum body by a non-cunductive spacer.
+Propellant flows into a stainless steel body and is spun into a vortex about the tip of the cathode, where it passes through an electric arc before being accelerated through a conical nozzle.
+The flow swirler doubles as a high-temperature ceramic insulator.
+The insulator and cathode are mounted concentrically into a low-temperature PTFE thermal and electrical insulator, which is fixed to the thruster test stand.
+The nozzle is electrically insulated from the steel body by a non-conductive ceramic spacer.
+% how much energy transferred from arc to plasma?
 \begin{figure}[htp]
   \centering
   \includegraphics[width=\linewidth]{figs/cutaway_annotated.png}
-  \caption[P17101 Arcjet Annotated Cutaway]{Components that are charged or exposed to extreme heat are electrically and thermally insulated.
+  \caption[P17101 Arcjet Annotated Cutaway]{Components that are charged or exposed to extreme heat are electrically and thermally insulated. \textbf{Update with HV+ lead and remove tungsten material from nozzle.}
 \label{fig:annotated-cutaway}
 }
 \end{figure}
@@ -183,7 +177,7 @@ The nozzle is electrically insulated from the aluminum body by a non-cunductive 
 \subsection{Power Conditioning Unit}
 % Describe the inputs and desired outputs of the unit. Explain the theoretical justification behind the HV/HC approach. Describe the approach in theoretical terms and list practical limitations.
 The electrical arc used to add energy to the gas is generated and sustained by the Power Conditioning Unit (PCU).
-The PCU consists of high-voltage (HV) and high-current (HC) modes.
+The PCU consists of separate high-voltage (HV) and high-current (HC) sides.
 The HV side of the circuit initiates the arc, then the PCU switches to the HC ``side'' of the circuit to sustain a high-current arc.
 This architecture is similar to a plasma torch and has been demonstrated in similar tabletop systems~\cite{park2015thesis}.
 
