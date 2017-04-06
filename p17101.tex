@@ -8,6 +8,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[pdftex,breaklinks,pdfauthor={MSD Team P17101},pdfcreator={Philip Linden},pdftitle={P17101 Arcjet Thruster}]{hyperref}
 \usepackage{nomencl}
+\usepackage{chngcntr}
 \makenomenclature{}
 
 % cite.sty was written by Donald Arseneau
@@ -235,13 +236,21 @@ The GN$_2$ is nominally regulated to \SI{20}{psi} before reaching a normally-clo
 GN$_2$ is flowed through the system for several seconds before PCU ignition to ensure only nitrogen is present in the thruster, and after PCU shutdown to cool hot hruster components.
 
 \subsection{Data Acquisition \& Control}
-% Explain the DAQ hookup and justification for the DAQ, and limitations to that choice. Show and describe the VI.
-Operation of the PCU and propellant solenoid is nominally controlled by a Texas Instruments MyDAQ and LabVIEW Virtual Interface (VI).
-The test engineer starts and stops a test with the VI from a computer connected to the test stand. The timing of solenoid and PCU events may be programmed or toggled manually.
 
-The MyDAQ device also collects data from all sensors used in the test stand.
-Thruster performance is quantified by measuring thrust force generated during a burn.
-Pressure inside the main body is monitored to judge the health of the system during operation and saved as a secondary performance metric.
+Operation of the PCU and propellant solenoid as well as data acquisition (DAQ) is nominally controlled by a National Instruments MyDAQ device utilizing a LabVIEW Virtual Interface (VI).
+Two DAQ devices were recognized as being readily available, the NI USB-6008 and the NI MyDAQ.\@
+The USB-6008 device offers more overall channels (4 analog input) but with a much lower throughput (\SI{10}{kS/s}) and resolution (12-bit).
+The MyDAQ device only offers 2 analog input channels but offers \SI{200}{kS/s} at 16-bit resolution. It was determined that the primary performance metric would be the thrust force generated during a burn with pressure inside the main body being a secondary performance metric.
+Acquiring data for these metrics would only require two analog input channels and as such, the MyDAQ device was chosen for its superior precision.
+Both devices were also capable of generating an output which would be sufficient to actuate the transistors, which in turn activate the PCU and propellant solenoid, so this parameter was not taken into consideration during device selection.
+
+The test engineer starts and stops a test with the VI (see Appendix~\ref{fig:VI-frontpanel}) from a computer connected to the test stand.
+Once the proper channels are selected for both data acquisition (analog inputs) and system control (analog outputs), the DAQ parameters may be chosen (i.e.\ sample rate \& number of samples per channel).
+The timing of solenoid and PCU events may also be adjusted via the front panel.
+Once the VI is started, the solenoid and PCU will be activated respectively and DAQ will begin with a live readout being shown on the waveform chart displayed on the front panel.
+When the VI is stopped, the user will be prompted to either save the data or to discard it.
+The VI may be stopped via the stop button on the front panel or by the satisfaction of a number of safety interlocks present within the block diagram.
+Examples of these interlocks are errors in the DAQ sequence, positive gauge pressure present in the thruster's main body before starting the VI, or a ten second timeout.
 
 \subsection{Safety Measures}
 % Describe risk management in more detail. Consider ommitting this section~\cite{linden}.
@@ -271,10 +280,34 @@ The team thanks Mr.~Vincent Burolla for his unwavering support; the Mechanical E
 
 \onecolumn
 \appendices{}
+\counterwithin{figure}{section}
 \section{PCU Schematic}
 \begin{figure}[h!]
-  \centering
   \includegraphics[angle=90,height=.9\vsize,keepaspectratio]{figs/PCU.jpg}
+  \caption{Electrical diagram of the PCU.}
+\label{fig:pcu-schematic}
 \end{figure}
 
+\section{Data Aqcuisition \& Control Virtual Interface}
+% Images will need to be updated once proper data acquisition/recording and safety interlocks are implemented.
+\begin{figure}[htp]
+  \includegraphics[height=.6\vsize,keepaspectratio]{figs/VI_30Mar17_FP.png}
+  \caption{The user interface for the DAQ/Control VI.\@
+\label{fig:VI-frontpanel}
+}
+\end{figure}
+
+\begin{figure}[htp]
+  \includegraphics[height=.5\vsize,keepaspectratio]{figs/VI_30Mar17.png}
+  \caption{The block diagram for the DAQ/Control VI.\@
+\label{fig:VI-blockdiagram}
+}
+\end{figure}
+
+\begin{figure}[htp]
+  \includegraphics[height=.4\vsize,keepaspectratio]{figs/VI_30Mar17_SubVI.png}
+  \caption{One of three sub-VIs used within the main VI to define channels \& tasks.
+\label{fig:VI-subVI}
+}
+\end{figure}
 \end{document}
