@@ -8,6 +8,7 @@
 \usepackage[pdftex,breaklinks,pdfauthor={MSD Team P17101},pdfcreator={Philip Linden},pdftitle={P17101 Arcjet Thruster}]{hyperref}
 \usepackage{nomencl}
 \usepackage{chngcntr}
+\usepackage{color}
 \makenomenclature{}
 
 % cite.sty was written by Donald Arseneau
@@ -46,7 +47,7 @@
 \hyphenation{explor-ation explor-atory}
 
 \begin{abstract}
-An electrothermal propulsion system was developed for RIT Space Exploration (SPEX).
+An electrothermal propulsion system was developed for RIT Space Exploration (SPEX) {\color{red}as an exploratory project to develop space systems at the Rochester Institute of Technology such as high-efficiency in-space propulsion for station-keeping maneuvers}.
 The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems.
 The thruster assembly generates an electrical arc across the thruster nozzle's throat, ionizing nitrogen propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
 \end{abstract}
@@ -67,8 +68,8 @@ The thruster assembly generates an electrical arc across the thruster nozzle's t
   \nomunit{\,\si{\meter\per\second}}}
 \nomenclature{$\dot{m}$}{Gas mass flow rate
   \nomunit{\,\si{\kilo\gram\per\second}}}
-\nomenclature{$\alpha$}{Diverging nozzle half-angle
-  \nomunit{\,\si{\deg}}}
+% \nomenclature{$\alpha$}{Diverging nozzle half-angle
+%   \nomunit{\,\si{\deg}}}
 % rocket equations
 \nomenclature{$F$}{Thrust
   \nomunit{\,\si{\newton}}}
@@ -143,7 +144,7 @@ Thrust is a function of the momentum of the flow exiting the nozzle.
 % some calculations?
 In the ideal condition using gaseous N$_2$ as propellant, a conical nozzle with $\alpha=15$ is capable of \SI{0}{\newton} of thrust without a sustained arc.
 At sea-level, \SI{0}{\newton} of thrust is expected.
-\textbf{Include theoretical calcs for cold thrust to compare performance with theory in order to validate design.
+{\color{red}Include theoretical calcs for cold thrust to compare performance with theory in order to validate design.
 Also predict thrust with arc on.
 Show Isp predictions for given thrust values and estimated mass flow rates.}
 
@@ -174,7 +175,7 @@ The nozzle is electrically insulated from the steel body by a non-conductive cer
 \begin{figure}[htp]
   \centering
   \includegraphics[width=\linewidth]{figs/cutaway_annotated.png}
-  \caption[P17101 Arcjet Annotated Cutaway]{Components that are charged or exposed to extreme heat are electrically and thermally insulated. \textbf{Update with HV+ lead and remove tungsten material from nozzle.}
+  \caption[P17101 Arcjet Annotated Cutaway]{Components that are charged or exposed to extreme heat are electrically and thermally insulated. {\color{red}Update with HV+ lead and remove tungsten material from nozzle.}
 \label{fig:annotated-cutaway}
 }
 \end{figure}
@@ -204,9 +205,16 @@ The HV side takes the 120 V AC input and passes it through a dimmer switch, resu
 A capacitor in series with the dimmer produces the derivative of the chopped AC wave, impulse functions.
 This voltage is supplied to an automotive ignition coil, which returns the high voltage output that generates the arc across the anode and cathode.
 
+{\color{red}
+  The PCU is housed in a modified mid-tower aluminum computer case.
+  This provides a grounded area with many tie-down points for electrical components to be placed.
+  The computer case is laid on its side with one side panel removed.
+  Clearance holes for component stakes are drilled through the panels and components are secured with screws or cable ties.
+}
+
 \begin{figure}[htp]
   \includegraphics[width=\linewidth]{figs/hc-schematic.png}
-  \caption{Anthony, please explain the high current circuit here.
+  \caption{{\color{red}Anthony, please explain the high current circuit here.}
 \label{fig:hc-circuit}
 }
 \end{figure}
@@ -262,6 +270,17 @@ Examples of these interlocks are errors in the DAQ sequence, positive gauge pres
 
 \section{Test Procedure}
 % Describe the basic test plan in broad terms and how we approached testing. Describe the setup within the engine test cell and how the user interacts with the system.
+The test stand, PCU, and propellant supply canister are placed in an engine test cell used by RIT's Formula SAE club.
+This space is typically used for engine testing and is outfitted with reinforced doors, walls, and windows, a ventilation system, and an adjacent room fitted with computers.
+The arcjet thruster assembly is in view of the computer room windows.
+Wires for data acquisition and control are fed through a pass-through between the two rooms and connected to a National Instruments myDAQ, which is connected to a computer running the DAQ VI.\@
+
+For each test, the test cell is evacuated and its doors are closed.
+The propellant solenoid valve opens five seconds before the PCU engages to purge air from the system to ensure only Nitrogen is present in the thruster.
+The PCU ignites the arc and sustains it for ten seconds.
+The PCU disengages and cold gas continues to flow for an additional ten seconds in order to cool the thruster.
+The solenoid valve closes and the system is safed before the test cell is opened.
+Thrust and pressure data are saved to a comma-delimited text file.
 
 \section{Results}
 % Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
