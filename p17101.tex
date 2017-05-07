@@ -49,7 +49,7 @@
 \begin{abstract}
 An electrothermal propulsion system was developed for RIT Space Exploration (SPEX) {\color{red}as an exploratory project to develop space systems at the Rochester Institute of Technology such as high-efficiency in-space propulsion for station-keeping maneuvers}.
 The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems.
-The thruster assembly generates an electrical arc across the thruster nozzle's throat, ionizing nitrogen propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
+The thruster assembly generates an electrical arc across the thruster nozzle's throat, ionizing nitrogen or argon propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
 \end{abstract}
 
 \label{sec:nomenclature}
@@ -116,6 +116,7 @@ The ideal propellant for arcjet engines is one which can be stored for long peri
 NASA identifies Hydrogen (H$_{2}$), Ammonia (NH$_{3}$), and Hydrazine (N$_{2}$H$_{3}$) as ideal propellants for arcjets~\cite{nasa1992considerations}.
 Unfortunately, these gases are toxic or difficult to handle on a university campus.
 Nitrogen (N$_{2}$) is an easy-to-handle alternative that has relatively favorable ionization and thermodynamic characteristics, and has been used in similar low-power arcjet demonstrations~\cite{olin2012report,olin2012sim}.
+Argon (Ar) is a very cheap, easy-to-handle, and highly available alternative to nitrogen, and has similar characteristics.
 % High level gas dynamics analysis
 \begin{figure}[htp]
   \centering
@@ -240,9 +241,9 @@ Two 6''$\times$8'' plates are welded at a right angle with a pair of gussets to 
 The thruster is mounted to the test platform using a set of three toe-clamps to make the set up and breakdown of the system simple and efficient.
 The stand's construction allows for some variability in expected test results through a set of slots used to position the load cell. Since it offers a small form facto, the complete mechanical system can be accommodated in a range of different testing environments such as the engine test cell that is used to complete these initial studies.
 
-Propellant is supplied by a gaseous nitrogen dewar at \SI{2200}{psi}.
+Propellant is supplied by a compressed gas dewar at \SI{2200}{psi}.
 The GN$_2$ is nominally regulated to \SI{20}{psi} before reaching a normally-closed solenoid valve.
-GN$_2$ is flowed through the system for several seconds before PCU ignition to ensure only nitrogen is present in the thruster, and after PCU shutdown to cool hot hruster components.
+GN$_2$ is flowed through the system for several seconds before PCU ignition to ensure only propellant is present in the thruster, and after PCU shutdown to cool hot hruster components.
 
 \subsection{Data Acquisition \& Control}
 
@@ -278,14 +279,35 @@ The arcjet thruster assembly is in view of the computer room windows.
 Wires for data acquisition and control are fed through a pass-through between the two rooms and connected to a National Instruments myDAQ, which is connected to a computer running the DAQ VI.\@
 
 For each test, the test cell is evacuated and its doors are closed.
-The propellant solenoid valve opens five seconds before the PCU engages to purge air from the system to ensure only Nitrogen is present in the thruster.
+The propellant solenoid valve opens five seconds before the PCU engages to purge air from the system to ensure only propellant is present in the thruster.
 The PCU ignites the arc and sustains it for ten seconds.
 The PCU disengages and cold gas continues to flow for an additional ten seconds in order to cool the thruster.
 The solenoid valve closes and the system is safed before the test cell is opened.
 Thrust and pressure data are saved to a comma-delimited text file.
 
+Load cell data was collected for no operation, cold gas only, and gas flow with the PCU engaged.
+The data set for no operation is used to tare the thrust scale and allow the weight of the system to be filtered out of other test data sets.
+By collecting thrust data for cold gas only and with the PCU engaged, the effects of adding heat to the gas with an electric arc may be assessed.
+
 \section{Results}
 % Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
+While load cell data is relatively clean for the tare and cold fire cases, the data is very noisy while the PCU is engaged.
+\autoref{fig:filtered-data} shows the unfiltered and filtered data.
+\begin{table}
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Propellant & Thrust (\si{\newton}) & $\dot{m}$ (\si{\kilo\gram\per\second}) & $I_{sp}$ (\si{\second}) \\
+    \midrule
+    Nitrogen & & & & \\
+    Argon & & & & \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\begin{figure}
+  \includegraphics[width=\linewidth]{figs/Arcing-Filter.png}
+  \caption{}
+\label{fig:filtered-data}
+\end{figure}
 
 \section{Conclusions \& Recommendations}
 % Evaluate the success of the project and make recommendations for improving it.
