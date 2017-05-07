@@ -147,10 +147,10 @@ In the ideal condition using gaseous N$_2$ as propellant, a conical nozzle with 
 At sea-level, \SI{0}{\newton} of thrust is expected.
 {\color{red}Include theoretical calcs for cold thrust to compare performance with theory in order to validate design.
 Also predict thrust with arc on.
-Show Isp predictions for given thrust values and estimated mass flow rates.}
+Show $I_{sp}$ predictions for given thrust values and estimated mass flow rates.}
 
 \begin{table}[hbp]
-  \caption{Theoretical thrust and Isp values with respect to space and sea-level operation, total pressure $p_0= $\SI{137.9}{\kilo\pascal}.
+  \caption{Theoretical thrust and $I_{sp}$ values with respect to space and sea-level operation, total pressure $p_0= $\SI{137.9}{\kilo\pascal}.
 \label{tab:theoretical-performance}
 }
 {\color{red}
@@ -293,13 +293,18 @@ By collecting thrust data for cold gas only and with the PCU engaged, the effect
 % Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
 While load cell data is relatively clean for the tare and cold fire cases, the data is very noisy while the PCU is engaged.
 \autoref{fig:filtered-data} shows the unfiltered and filtered data.
-\begin{table}
+
+\begin{table}[hbp]
+  \caption{Empirical thrust and $I_{sp}$ for sea-level operation, total pressure $p_0= $\SI{137.9}{\kilo\pascal}.
+\label{tab:empirical-performance}
+}
   \begin{tabular}{lrrrrr}
     \toprule
-    Propellant & Thrust (\si{\newton}) & $\dot{m}$ (\si{\kilo\gram\per\second}) & $I_{sp}$ (\si{\second}) \\
+    & & \multicolumn{2}{c}{Without arc} & \multicolumn{2}{c}{With arc} \\
+    & & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) \\
     \midrule
-    Nitrogen & & & & \\
-    Argon & & & & \\
+    Vacuum & $0$ & $0$ & $0$ & $0$ & $0$ \\
+    Sea-level & $101.3$ & $0$ & $0$ & $0$ & $0$ \\
     \bottomrule
   \end{tabular}
 \end{table}
