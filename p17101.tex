@@ -302,12 +302,32 @@ For each data set, volumetric flow rate was measured by a flow meter in-line and
 
 \section{Results}
 % Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
+The PCU consistently generates and sustains an electric arc that spans from the tungsten electrode to the graphite nozzle. Using argon or nitrogen propellant, the gas is ionized and hot plasma is ejected from the nozzle, as shown in \autoref{fig:}.
+
 On the millinewton scale, load cell measurement data is very noisy, and signal noise worsens while the PCU is engaged.
-{\color{red}Observation data was filtered using?.
-The designed filter removes much of the high frequency ($>100$\si{Hz}) noise present in the signal, but low frequency noise remains present.}
-% Matt Giuffre [9:04 PM]
-% It's a Kaiser window FIR filter. It essentially a very aggressive gaussian window. It attenuates at -60dB/decade at the stopband as opposed to the -20dB/decade which is standard. This is because I assumed the data to be relatively steady
-A filtered tare load for the system with no gas flowing through the nozzle is shown in \autoref{fig:tare-data}.
+The
+% estimated thrust below \SI{50}{\milli\newton}.
+% So 50mN was always going to be beyond the reach of this load cell, then?
+%
+% Matt Giuffre [< 1 minute ago]
+% Beyond the reach of any load cell costing < $3000
+Empirically, the true thrust load is lost in measurement error.
+Additional measurement error is suspected to be caused by electromagnetic interference from the high-voltage components operating in close proximity to telemetry cables.
+Low-frequency vibrations from the environment itself may also play a role since the test stand is located within the RIT Kate Gleason College of Engineering machine shop, where numerous lathes, mills, and other heavy machinery operate.
+
+% FS = 6kg = 6000g = 58860mN
+% 58860mN * ±10% = ±5886mN
+% Since we gave the sensor a gain of 200:
+% FS = 38000mN
+% 38000mN * ±10% = ±3800mN
+% Q.E.D.
+% but even if you achieve ±1% FS, that gives you ±380mN
+
+% {\color{red}Observation data was filtered using?.
+% The designed filter removes much of the high frequency ($>100$\si{Hz}) noise present in the signal, but low frequency noise remains present.}
+% % Matt Giuffre [9:04 PM]
+% % It's a Kaiser window FIR filter. It essentially a very aggressive gaussian window. It attenuates at -60dB/decade at the stopband as opposed to the -20dB/decade which is standard. This is because I assumed the data to be relatively steady
+% A filtered tare load for the system with no gas flowing through the nozzle is shown in \autoref{fig:tare-data}.
 
 \begin{table}[hbp]
   \begin{threeparttable}
@@ -327,15 +347,17 @@ A filtered tare load for the system with no gas flowing through the nozzle is sh
   \end{tabular}
   \begin{tablenotes}
   \item[a] Thrust data is the average tare load (\SI{21.0269}{\newton}) substracted from the average load observed during test fires for each propellant, after filtering.
-  \item[b] Negative thrust is a result of significant error from signal noise.
+  \item[b] Negative thrust is a result of significant error from signal noise present in the tare and test data.
   \end{tablenotes}
 \end{threeparttable}
 \end{table}
-\begin{figure}
-  \includegraphics[width=\linewidth]{figs/tareload.png}
-  \caption{.}
-\label{fig:data-noise-psd}
-\end{figure}
+
+% \begin{figure}
+%   \includegraphics[width=\linewidth]{figs/tareload.png}
+%   \caption{.}
+% \label{fig:data-noise-psd}
+% \end{figure}
+
 % \begin{figure}
 %   \includegraphics[width=\linewidth]{figs/data-noise-psd.png}
 %   \caption{For data collected in the tare case, noise in the load cell data does not extend beyond 0--\SI{0.1}{Hz}.
