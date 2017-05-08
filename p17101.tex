@@ -214,9 +214,11 @@ This current passes through a coil that activates a reed switch, turning off the
 \end{figure}
 
 % explain HC side here
-The HV side takes the 120 V AC input and passes it through a dimmer switch, resulting in a ``chopped'' AC wave.
-A capacitor in series with the dimmer produces the derivative of the chopped AC wave, impulse functions.
-This voltage is supplied to an automotive ignition coil, which returns the high voltage output that generates the arc across the anode and cathode.
+The control circuit for the high current works by utilizing a lower voltage DC source.
+To achieve this, the \SI{120}{\volt} AC signal is passed through a step down transformer and is rectified to DC.\@
+A normally open reed switch is used to detect current passing through the coil in the HC circuit.
+When closed, the DC voltage is applied to the relay in the HV circuit.
+The relay is normally closed, so applying a voltage to it disables the HV side.
 
 {\color{red}
   The PCU is housed in a modified mid-tower aluminum computer case.
@@ -227,14 +229,17 @@ This voltage is supplied to an automotive ignition coil, which returns the high 
 
 \begin{figure}[htp]
   \includegraphics[width=\linewidth]{figs/hc-schematic.png}
-  \caption{{\color{red}Anthony, please explain the high current circuit here.}
+  \caption{A schematic of the components used in the HC circuit.
+  The 120V AC line from the wall gets rectified into a DC voltage with a power resistor controlling the current draw.
 \label{fig:hc-circuit}
 }
 \end{figure}
 
 The HC circuit works by rectifying the \SI{120}{\volt} AC sine wave, resulting \SI{170}{\volt} DC.\@
 The arc closes the circuit, allowing electrons to flow.
-The high current comes from using small power resistors, which give a total resistance of \SI{30}{\ohm}.
+The high current is drawn from heating coils acting as power resistors.
+The two heating coils can be configured to have a resistance of \SI{7.5}{\ohm}, \SI{15}{\ohm}, or \SI{30}{\ohm}.
+All tests were performed with the \SI{15}{\ohm} configuration.
 The HC circuit has a coil that activates a reed switch when on.
 The reed switch activates a relay which turns off the HV circuit.
 
@@ -329,7 +334,7 @@ Low-frequency vibrations from the environment itself may also play a role since 
 % % It's a Kaiser window FIR filter. It essentially a very aggressive gaussian window. It attenuates at -60dB/decade at the stopband as opposed to the -20dB/decade which is standard. This is because I assumed the data to be relatively steady
 % A filtered tare load for the system with no gas flowing through the nozzle is shown in \autoref{fig:tare-data}.
 
-\begin{table}[hbp]
+\begin{table}
   \begin{threeparttable}
   \caption{Empirical thrust and $I_{sp}$ for operation in atmosphere, total pressure $p_0= $\SI{239.2}{\kilo\pascal}.
 \label{tab:empirical-performance}
