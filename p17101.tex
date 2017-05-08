@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{cite}
 \usepackage{multirow}
+\usepackage[flushleft]{threeparttable}
 \usepackage{booktabs}
 \usepackage{siunitx}
 \usepackage[T1]{fontenc}
@@ -128,6 +129,16 @@ Argon (Ar) is a very cheap, easy-to-handle, and highly available alternative to 
 
 Gas enters the chamber and is ionized and heated by a high-current arc that extends from the cathode to the throat of the anodic nozzle to form a plasma.
 The plasma reaches sonic speed in the throat and is supersonically accelerated as it expands through the nozzle.
+Ideal flow performance is illustrated in \autoref{fig:flow-graphs}, assuming
+uniform flow across nozzle cross sections, isentropic flow conditions (except across shocks), zero vorticity, and unmoving flow at inlet.
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=\linewidth]{figs/flow.png}
+  \caption[P17101 Arcjet Annotated Cutaway]{{\color{red}Update with predicted flow through nozzle, including shocks.}
+\label{fig:flow-graphs}
+}
+\end{figure}
 
 Thrust is a function of the momentum of the flow exiting the nozzle.
 \begin{equation}
@@ -143,14 +154,13 @@ Thrust is a function of the momentum of the flow exiting the nozzle.
    I_{sp}=\frac{F}{\dot{m} g_0}
  \end{equation}
 % some calculations?
-In the ideal condition using gaseous N$_2$ as propellant, a conical nozzle with $\alpha=15$ is capable of \SI{0}{\newton} of thrust without a sustained arc.
-At sea-level, \SI{0}{\newton} of thrust is expected.
+In the ideal condition using gaseous N$_2$ as propellant, a conical nozzle with $\alpha=15$ is capable of {\color{red}\SI{0}{\newton} of thrust} without a sustained arc.
+At sea-level, {\color{red}\SI{0}{\newton} of thrust} is expected.
 {\color{red}Include theoretical calcs for cold thrust to compare performance with theory in order to validate design.
-Also predict thrust with arc on.
 Show $I_{sp}$ predictions for given thrust values and estimated mass flow rates.}
 
 \begin{table}[hbp]
-  \caption{Theoretical thrust and $I_{sp}$ values with respect to space and sea-level operation, total pressure $p_0= $\SI{137.9}{\kilo\pascal}.
+  \caption{Theoretical thrust and $I_{sp}$ values with respect to space and sea-level operation, total pressure $p_0= $\SI{239.2}{\kilo\pascal}.
 \label{tab:theoretical-performance}
 }
 {\color{red}
@@ -159,7 +169,7 @@ Show $I_{sp}$ predictions for given thrust values and estimated mass flow rates.
     & & \multicolumn{2}{c}{Without arc} & \multicolumn{2}{c}{With arc} \\
     & $p_b$ (\si{\kilo\pascal}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) \\
     \midrule
-    \color{red}Vacuum & $0$ & $0$ & $0$ & $0$ & $0$ \\
+    Vacuum    & $0$     & $0$ & $0$ & $0$ & $0$ \\
     Sea-level & $101.3$ & $0$ & $0$ & $0$ & $0$ \\
     \bottomrule
   \end{tabular}
@@ -288,31 +298,51 @@ Thrust and pressure data are saved to a comma-delimited text file.
 Load cell data was collected for no operation, cold gas only, and gas flow with the PCU engaged.
 The data set for no operation is used to tare the thrust scale and allow the weight of the system to be filtered out of other test data sets.
 By collecting thrust data for cold gas only and with the PCU engaged, the effects of adding heat to the gas with an electric arc may be assessed.
+For each data set, volumetric flow rate was measured by a flow meter in-line and downstream from the propellant supply pressure regulator.
 
 \section{Results}
 % Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
-While load cell data is relatively clean for the tare and cold fire cases, the data is very noisy while the PCU is engaged.
-\autoref{fig:filtered-data} shows the unfiltered and filtered data.
+On the millinewton scale, load cell measurement data is very noisy, and signal noise worsens while the PCU is engaged.
+{\color{red}Observation data was filtered using?.
+The designed filter removes much of the high frequency ($>100$\si{Hz}) noise present in the signal, but low frequency noise remains present.}
+% Matt Giuffre [9:04 PM]
+% It's a Kaiser window FIR filter. It essentially a very aggressive gaussian window. It attenuates at -60dB/decade at the stopband as opposed to the -20dB/decade which is standard. This is because I assumed the data to be relatively steady
+A filtered tare load for the system with no gas flowing through the nozzle is shown in \autoref{fig:tare-data}.
 
 \begin{table}[hbp]
-  \caption{Empirical thrust and $I_{sp}$ for sea-level operation, total pressure $p_0= $\SI{137.9}{\kilo\pascal}.
+  \begin{threeparttable}
+  \caption{Empirical thrust and $I_{sp}$ for operation in atmosphere, total pressure $p_0= $\SI{239.2}{\kilo\pascal}.
 \label{tab:empirical-performance}
 }
+\centering
   \begin{tabular}{lrrrrr}
     \toprule
-    & & \multicolumn{2}{c}{Without arc} & \multicolumn{2}{c}{With arc} \\
-    & & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) \\
+    & \multicolumn{2}{c}{Without arc} & \multicolumn{2}{c}{With arc} \\
+    & Thrust\tnote{a} (\si{\milli\newton}) & $I_{sp}$ (\si{\second}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) \\
     \midrule
-    Vacuum & $0$ & $0$ & $0$ & $0$ & $0$ \\
-    Sea-level & $101.3$ & $0$ & $0$ & $0$ & $0$ \\
+    Nitrogen & $12.5$ & $0$ & $ $ & $0$ \\
+    Argon    & $-58.1$\tnote{b} & $0$ & $0$ & $0$ \\ \midrule
+    Mean     & $-22.8$\tnote{b} & $ $ & $15.0$ & $ $  \\
     \bottomrule
   \end{tabular}
+  \begin{tablenotes}
+  \item[a] Thrust data is the average tare load (\SI{21.0269}{\newton}) substracted from the average load observed during test fires for each propellant, after filtering.
+  \item[b] Negative thrust is a result of significant error from signal noise.
+  \end{tablenotes}
+\end{threeparttable}
 \end{table}
 \begin{figure}
-  \includegraphics[width=\linewidth]{figs/Arcing-Filter.png}
-  \caption{}
-\label{fig:filtered-data}
+  \includegraphics[width=\linewidth]{figs/tareload.png}
+  \caption{.}
+\label{fig:data-noise-psd}
 \end{figure}
+% \begin{figure}
+%   \includegraphics[width=\linewidth]{figs/data-noise-psd.png}
+%   \caption{For data collected in the tare case, noise in the load cell data does not extend beyond 0--\SI{0.1}{Hz}.
+%   During a test fire with the PCU engaged, the power spectral density of the load cell data is significant from 0--\SI{75}{\kilo{}Hz}.
+%   Since the system should physically reach a steady state condition relatively quickly, the oscillations must be attributed to noise in the load cell output signal.}
+% \label{fig:data-noise-psd}
+% \end{figure}
 
 \section{Conclusions \& Recommendations}
 % Evaluate the success of the project and make recommendations for improving it.
