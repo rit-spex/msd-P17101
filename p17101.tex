@@ -220,13 +220,6 @@ A normally open reed switch is used to detect current passing through the coil i
 When closed, the DC voltage is applied to the relay in the HV circuit.
 The relay is normally closed, so applying a voltage to it disables the HV side.
 
-{\color{red}
-  The PCU is housed in a modified mid-tower aluminum computer case.
-  This provides a grounded area with many tie-down points for electrical components to be placed.
-  The computer case is laid on its side with one side panel removed.
-  Clearance holes for component stakes are drilled through the panels and components are secured with screws or cable ties.
-}
-
 \begin{figure}[htp]
   \includegraphics[width=\linewidth]{figs/hc-schematic.png}
   \caption{A schematic of the components used in the HC circuit.
@@ -243,13 +236,25 @@ All tests were performed with the \SI{15}{\ohm} configuration.
 The HC circuit has a coil that activates a reed switch when on.
 The reed switch activates a relay which turns off the HV circuit.
 
+The PCU is housed in a modified mid-tower aluminum computer case shown in~\autoref{fig:pcu-pic}.
+This provides a grounded area with many tie-down points for electrical components to be placed.
+The computer case is laid on its side with one side panel removed.
+Clearance holes for component stakes are drilled through the panels and components are secured with screws or cable ties.
+
 During nominal operation, the PCU draws $900$--$1100$\si{\watt} from the wall outlet.
+
+\begin{figure}[htp]
+  \includegraphics[angle=-90,origin=c,width=\linewidth]{figs/pcu-pic.jpg}
+  \caption{{\color{red}Add bubbles and label different components.}
+\label{fig:pcu-pic}
+}
+\end{figure}
 
 \subsection{Test Stand}
 % Explain the physical apparatus that measures the system's outputs. Describe the interactions between the thruster and the test stand. Justify instrumentation selection.
-The test stand is cantilevered in design, leveraging both the mass of the thruster and its operating thrust.
-Because expected thrust output is low and load cells in that range are either very costly or lack the necessary accuracy this decision was made to allow the thruster mass to act as an offset that suits a more common range load cell.
-The resolution of a 0--6\si{\kilo\gram} Omega LCAE-6kg load cell will capture this change in load reliably while also keeping equipment expenses reasonable.
+The test stand, shown in~\autoref{fig:teststand-pic}, is cantilevered in design, leveraging both the mass of the thruster and its operating thrust.
+Because expected thrust output is less than \SI{50}{\milli\newton} and load cells in this range are either very costly or lack {\color{red}the necessary accuracy}, the thruster mass is used as an offset that suits a more common range load cell.
+The resolution of a 0--6\si{\kilo\gram} Omega LCAE-6kg load cell was chosen as a reasonable middle ground between load resolution and cost.
 
 The construction of the stand is largely 6061-T6 aluminum with the test platform assembled to an oil-impregnated bronze rod that allows for displacement vertically downwards on the load cell.
 Two 6''$\times$8'' plates are welded at a right angle with a pair of gussets to form the main structure of the stand, and two bearing blocks are fastened several inches further up to capture the bronze bearing rod and test platform itself.
@@ -258,26 +263,38 @@ The stand's construction allows for some variability in expected test results th
 
 Propellant is supplied by a compressed gas dewar at \SI{2200}{psi}.
 The GN$_2$ is nominally regulated to \SI{20}{psi} before reaching a normally-closed solenoid valve.
-GN$_2$ is flowed through the system for several seconds before PCU ignition to ensure only propellant is present in the thruster, and after PCU shutdown to cool hot hruster components.
+GN$_2$ is flowed through the system for several seconds before PCU ignition to ensure only propellant is present in the thruster, and after PCU shutdown to cool hot thruster components.
+
+The propellant solenoid and PCU are activated and deactivated toggle switches next to an emergency shut-off button, shown in~\autoref{fig:pcu-pic}.
+
+\begin{figure}[htp]
+  \includegraphics[angle=-90,origin=c,width=\linewidth]{figs/teststand-pic.jpg}
+  \caption{{\color{red}Add bubbles and label different components.}
+\label{fig:teststand-pic}
+}
+\end{figure}
 
 \subsection{Data Acquisition \& Control}
 
-Operation of the PCU and propellant solenoid as well as data acquisition (DAQ) is nominally controlled by a National Instruments MyDAQ device utilizing a LabVIEW Virtual Interface (VI).
+Data acquisition (DAQ) is collected by a National Instruments MyDAQ device utilizing a LabVIEW Virtual Interface (VI).
 Two DAQ devices were recognized as being readily available, the NI USB-6008 and the NI MyDAQ.\@
 The USB-6008 device offers more overall channels (4 analog input) but with a much lower throughput (\SI{10}{kS/s}) and resolution (12-bit).
 The MyDAQ device only offers 2 analog input channels but offers \SI{200}{kS/s} at 16-bit resolution. It was determined that the primary performance metric would be the thrust force generated during a burn with pressure inside the main body being a secondary performance metric.
 Acquiring data for these metrics would only require two analog input channels and as such, the MyDAQ device was chosen for its superior precision.
 Both devices were also capable of generating an output which would be sufficient to actuate the transistors, which in turn activate the PCU and propellant solenoid, so this parameter was not taken into consideration during device selection.
+Initially the DAQ was configured to send control commands to activate and deactivate the PCU and solenoid, but was later removed due to errors encountered during testing.
 
-The test engineer starts and stops a test with the VI (see~\autoref{fig:VI-frontpanel}) from a computer connected to the test stand.
-Once the proper channels are selected for both data acquisition (analog inputs) and system control (analog outputs), the DAQ parameters may be chosen (i.e.\ sample rate \& number of samples per channel).
-The timing of solenoid and PCU events may also be adjusted via the front panel.
-Once the VI is started, the solenoid and PCU will be activated respectively and DAQ will begin with a live readout being shown on the waveform chart displayed on the front panel.
-When the VI is stopped, the user will be prompted to either save the data or to discard it.
+The test engineer starts and stops recording a test data set with the VI (see~\autoref{fig:VI-frontpanel}) from a computer connected to the test stand.
+Once the proper channels are selected for data acquisition (analog inputs), the DAQ parameters may be chosen (i.e.\ sample rate \& number of samples per channel).
+The test engineer may also choose whether to save test data.
+After a data set is collected, it is displayed on an amplitude versus time plot.
 
 \subsection{Safety Measures}
 % Describe risk management in more detail. Consider ommitting this section~\cite{linden}.
 In the event of a computer malfunction, an emergency shutoff button is wired into the circuit between the outlet and the PCU and the solenoid is normally closed and non-latching.
+This emergency shut-off and the toggle switches used to engage the PCU and solenoid are mounted behind a locking door such that the emergency shut-off button is pressed when the door is closed.
+The safety door is closed whenever the system is not in use, and locked when the system is stored.
+
 When a test is conducted, the test stand is placed in a well-ventilated Formula SAE engine test cell, and the control computer is located outside the testing room.
 The VI monitors sensor data in real-time and shuts down operation when sensor parameters reach unsafe limits, and may be stopped via the stop button on the front panel or by the satisfaction of a number of safety interlocks present within the block diagram.
 Examples of these interlocks are errors in the DAQ sequence, positive gauge pressure present in the thruster's main body before starting the VI, or a ten second timeout.
@@ -293,10 +310,19 @@ This space is typically used for engine testing and is outfitted with reinforced
 The arcjet thruster assembly is in view of the computer room windows.
 Wires for data acquisition and control are fed through a pass-through between the two rooms and connected to a National Instruments myDAQ, which is connected to a computer running the DAQ VI.\@
 
+The thrust load cell is calibrated in the test configuration by placing precision masses on the nozzle and recording at least 2 data sets for each calibration load.
+The calibration loads are used to correlate output voltage from the load cell into force data. \autoref{fig:loadcell-cal} shows the load cell calibration curve.
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{figs/loadcell-cal.png}
+  \caption{Using multiple data sets for a range of known precision mass loads, output voltages from the load cell are averaged and a calibration curve is drawn.}
+\label{fig:loadcell-cal}
+\end{figure}
+
 For each test, the test cell is evacuated and its doors are closed.
-The propellant solenoid valve opens five seconds before the PCU engages to purge air from the system to ensure only propellant is present in the thruster.
-The PCU ignites the arc and sustains it for ten seconds.
-The PCU disengages and cold gas continues to flow for an additional ten seconds in order to cool the thruster.
+The propellant solenoid valve opens one to two seconds before the PCU engages to purge air from the system to ensure only propellant is present in the thruster.
+The PCU ignites the arc and sustains it for at least five seconds.
+The PCU disengages and cold gas continues to flow for an additional two to five seconds in order to cool the thruster.
 The solenoid valve closes and the system is safed before the test cell is opened.
 Thrust and pressure data are saved to a comma-delimited text file.
 
@@ -307,10 +333,17 @@ For each data set, volumetric flow rate was measured by a flow meter in-line and
 
 \section{Results}
 % Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
-The PCU consistently generates and sustains an electric arc that spans from the tungsten electrode to the graphite nozzle. Using argon or nitrogen propellant, the gas is ionized and hot plasma is ejected from the nozzle, as shown in \autoref{fig:}.
+The PCU consistently generates and sustains an electric arc that spans from the tungsten electrode to the graphite nozzle.
+Using argon or nitrogen propellant, the gas is ionized and hot plasma is ejected from the nozzle, as shown in~\autoref{fig:burn-snapshots}.
 
+\begin{figure}
+  \includegraphics[width=\linewidth]{figs/burnsnapshots.png}
+  \caption{\emph{Far left:} Off.  \emph{Center left:} Ignition. \emph{Center right:} Ionization. \emph{Far right:} Red hot tungsten.
+\label{fig:burn-snapshots}}
+\end{figure}
+
+Outputs from the load cell are noisy, but oscillate symmetrically about values to a precision of $\pm10\%$ in accordance with the manufacturer specification. {\color{red}citation?}
 On the millinewton scale, load cell measurement data is very noisy, and signal noise worsens while the PCU is engaged.
-The
 % estimated thrust below \SI{50}{\milli\newton}.
 % So 50mN was always going to be beyond the reach of this load cell, then?
 %
@@ -318,8 +351,7 @@ The
 % Beyond the reach of any load cell costing < $3000
 Empirically, the true thrust load is lost in measurement error.
 Additional measurement error is suspected to be caused by electromagnetic interference from the high-voltage components operating in close proximity to telemetry cables.
-Low-frequency vibrations from the environment itself may also play a role since the test stand is located within the RIT Kate Gleason College of Engineering machine shop, where numerous lathes, mills, and other heavy machinery operate.
-
+% Low-frequency vibrations from the environment itself may also play a role since the test stand is located within the RIT Kate Gleason College of Engineering machine shop, where numerous lathes, mills, and other heavy machinery operate.
 % FS = 6kg = 6000g = 58860mN
 % 58860mN * ±10% = ±5886mN
 % Since we gave the sensor a gain of 200:
@@ -327,12 +359,16 @@ Low-frequency vibrations from the environment itself may also play a role since 
 % 38000mN * ±10% = ±3800mN
 % Q.E.D.
 % but even if you achieve ±1% FS, that gives you ±380mN
-
 % {\color{red}Observation data was filtered using?.
 % The designed filter removes much of the high frequency ($>100$\si{Hz}) noise present in the signal, but low frequency noise remains present.}
 % % Matt Giuffre [9:04 PM]
 % % It's a Kaiser window FIR filter. It essentially a very aggressive gaussian window. It attenuates at -60dB/decade at the stopband as opposed to the -20dB/decade which is standard. This is because I assumed the data to be relatively steady
 % A filtered tare load for the system with no gas flowing through the nozzle is shown in \autoref{fig:tare-data}.
+
+Metrics on the true performance of the thruster is inconclusive.
+Reporting thrust and specific impulse from these data would be highly uncertain and misleading.
+However, the data shows that thrust for tests with and without the PCU engaged are significantly statistically different.
+While the true performance can not be quantitatively determined, it is clear that the qualitative goal of achieving a change in performance over gold gas propulsion by ionizing propellant with an electric arc has been met.
 
 \begin{table}
   \begin{threeparttable}
@@ -400,17 +436,17 @@ The team thanks Mr.~Vincent Burolla for his unwavering support; the Mechanical E
 }
 \end{figure}
 
-\begin{figure}[htp]
-  \includegraphics[height=.5\vsize,keepaspectratio]{figs/VI_30Mar17.png}
-  \caption{The block diagram for the DAQ/Control VI.\@
-\label{fig:VI-blockdiagram}
-}
-\end{figure}
-
-\begin{figure}[htp]
-  \includegraphics[height=.4\vsize,keepaspectratio]{figs/VI_30Mar17_SubVI.png}
-  \caption{One of three sub-VIs used within the main VI to define channels \& tasks.
-\label{fig:VI-subVI}
-}
-\end{figure}
+% \begin{figure}[htp]
+%   \includegraphics[height=.5\vsize,keepaspectratio]{figs/VI_30Mar17.png}
+%   \caption{The block diagram for the DAQ/Control VI.\@
+% \label{fig:VI-blockdiagram}
+% }
+% \end{figure}
+%
+% \begin{figure}[htp]
+%   \includegraphics[height=.4\vsize,keepaspectratio]{figs/VI_30Mar17_SubVI.png}
+%   \caption{One of three sub-VIs used within the main VI to define channels \& tasks.
+% \label{fig:VI-subVI}
+% }
+% \end{figure}
 \end{document}
