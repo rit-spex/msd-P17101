@@ -29,7 +29,7 @@
 
 % http://edge.rit.edu/edge/P17101/public/Home
 
-\title{P17101: Design and Characterization of a 1kW Arcjet Thruster}
+\title{P17101: Design of a 1kW Arcjet Thruster}
 \author{
   Philip~Linden$^{*}$\thanks{$^{*}$MEng Student, Department of Mechanical Engineering},
   James~Gandek$^{\dagger}$\thanks{$^{\dagger}$BS Student, Department of Mechanical Engineering},
@@ -48,8 +48,8 @@
 \hyphenation{explor-ation explor-atory}
 
 \begin{abstract}
-An electrothermal propulsion system was developed for RIT Space Exploration (SPEX) {\color{red}as an exploratory project to develop space systems at the Rochester Institute of Technology such as high-efficiency in-space propulsion for station-keeping maneuvers}.
-The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems.
+An electrothermal propulsion system was developed for RIT Space Exploration (SPEX) to develop opportunities for design, testing, and characterization of advanced space systems at the Rochester Institute of Technology such as high-efficiency in-space propulsion for station-keeping maneuvers.
+% The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems.
 The thruster assembly generates an electrical arc across the thruster nozzle's throat, ionizing nitrogen or argon propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
 \end{abstract}
 
@@ -236,23 +236,17 @@ All tests were performed with the \SI{15}{\ohm} configuration.
 The HC circuit has a coil that activates a reed switch when on.
 The reed switch activates a relay which turns off the HV circuit.
 
-The PCU is housed in a modified mid-tower aluminum computer case shown in~\autoref{fig:pcu-pic}.
+The PCU is housed in a modified mid-tower aluminum computer case shown in~\autoref{fig:pcu-annotated}.
 This provides a grounded area with many tie-down points for electrical components to be placed.
 The computer case is laid on its side with one side panel removed.
 Clearance holes for component stakes are drilled through the panels and components are secured with screws or cable ties.
+Two desktop computer case fans are mounted in the back of the PCU housing to provide some airflow to cool the power resistors during operation.
 
 During nominal operation, the PCU draws $900$--$1100$\si{\watt} from the wall outlet.
 
-\begin{figure}[htp]
-  \includegraphics[angle=-90,origin=c,width=\linewidth]{figs/pcu-pic.jpg}
-  \caption{{\color{red}Add bubbles and label different components.}
-\label{fig:pcu-pic}
-}
-\end{figure}
-
 \subsection{Test Stand}
 % Explain the physical apparatus that measures the system's outputs. Describe the interactions between the thruster and the test stand. Justify instrumentation selection.
-The test stand, shown in~\autoref{fig:teststand-pic}, is cantilevered in design, leveraging both the mass of the thruster and its operating thrust.
+The test stand, shown in~\autoref{fig:teststand-annotated}, is cantilevered in design, leveraging both the mass of the thruster and its operating thrust.
 Because expected thrust output is less than \SI{50}{\milli\newton} and load cells in this range are either very costly or lack {\color{red}the necessary accuracy}, the thruster mass is used as an offset that suits a more common range load cell.
 The resolution of a 0--6\si{\kilo\gram} Omega LCAE-6kg load cell was chosen as a reasonable middle ground between load resolution and cost.
 
@@ -261,18 +255,28 @@ Two 6''$\times$8'' plates are welded at a right angle with a pair of gussets to 
 The thruster is mounted to the test platform using a set of three toe-clamps to make the set up and breakdown of the system simple and efficient.
 The stand's construction allows for some variability in expected test results through a set of slots used to position the load cell. Since it offers a small form facto, the complete mechanical system can be accommodated in a range of different testing environments such as the engine test cell that is used to complete these initial studies.
 
+\begin{figure}[htp]
+  \includegraphics[width=\linewidth]{figs/teststand-annotated.png}
+  \caption{An annotated view of the thruster assembly and test stand in the test configuration.
+  \emph{Not shown:} A compressed gas dewar with an inline flow meter and regulator valve are connected to the gas inlet tube (4) prior to the solenoid valve.
+\label{fig:teststand-annotated}
+}
+\end{figure}
+
+\begin{figure}[htp]
+  \includegraphics[width=\linewidth]{figs/pcu-annotated.png}
+  \caption{An annotated view of the open PCU.\@
+  Small components such as relays are not labeled here for clarity.
+  The the top cover of the PCU housing (not shown) may be installed to enclose the system completely.
+\label{fig:pcu-annotated}
+}
+\end{figure}
+
 Propellant is supplied by a compressed gas dewar at \SI{2200}{psi}.
 The GN$_2$ is nominally regulated to \SI{20}{psi} before reaching a normally-closed solenoid valve.
 GN$_2$ is flowed through the system for several seconds before PCU ignition to ensure only propellant is present in the thruster, and after PCU shutdown to cool hot thruster components.
 
-The propellant solenoid and PCU are activated and deactivated toggle switches next to an emergency shut-off button, shown in~\autoref{fig:pcu-pic}.
-
-\begin{figure}[htp]
-  \includegraphics[angle=-90,origin=c,width=\linewidth]{figs/teststand-pic.jpg}
-  \caption{{\color{red}Add bubbles and label different components.}
-\label{fig:teststand-pic}
-}
-\end{figure}
+The propellant solenoid and PCU are activated and deactivated toggle switches next to an emergency shut-off button, shown in~\autoref{fig:pcu-annotated}.
 
 \subsection{Data Acquisition \& Control}
 
@@ -315,7 +319,7 @@ The calibration loads are used to correlate output voltage from the load cell in
 
 \begin{figure}
   \includegraphics[width=\linewidth]{figs/loadcell-cal.png}
-  \caption{Using multiple data sets for a range of known precision mass loads, output voltages from the load cell are averaged and a calibration curve is drawn.}
+  \caption{Using multiple data sets for a range of known precision mass loads, output voltages from the load cell are averaged and a calibration curve is drawn. {\color{red} REPLACE WITH NEW CAL}}
 \label{fig:loadcell-cal}
 \end{figure}
 
@@ -332,13 +336,17 @@ By collecting thrust data for cold gas only and with the PCU engaged, the effect
 For each data set, volumetric flow rate was measured by a flow meter in-line and downstream from the propellant supply pressure regulator.
 
 \section{Results}
-% Show results and how they compare to our predictions. Describe any failures and the problem solving process that occurred.
+% Show results and how they compare to our pred|ictions. Describe any failures and the problem solving process that occurred.
 The PCU consistently generates and sustains an electric arc that spans from the tungsten electrode to the graphite nozzle.
 Using argon or nitrogen propellant, the gas is ionized and hot plasma is ejected from the nozzle, as shown in~\autoref{fig:burn-snapshots}.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{figs/burnsnapshots.png}
-  \caption{\emph{Far left:} Off.  \emph{Center left:} Ignition. \emph{Center right:} Ionization. \emph{Far right:} Red hot tungsten.
+  \caption{Videos were recorded during test fires.
+  \emph{Far left:} The system before a test.
+  \emph{Center left:} The arc is generated and the propellant is partially ionized.
+  \emph{Center right:} A fully realized plume of plasma is sustained in the nozzle.
+  \emph{Far right:} After 5--10 seconds of thrust, the PCU is deactivated and the tungsten electrode glows red hot while the graphite nozzle is warm to the touch.
 \label{fig:burn-snapshots}}
 \end{figure}
 
@@ -372,23 +380,22 @@ While the true performance can not be quantitatively determined, it is clear tha
 
 \begin{table}
   \begin{threeparttable}
-  \caption{Empirical thrust and $I_{sp}$ for operation in atmosphere, total pressure $p_0= $\SI{239.2}{\kilo\pascal}.
+  \caption{Best estimate of empirical thrust for operation in atmosphere.
 \label{tab:empirical-performance}
 }
-\centering
-  \begin{tabular}{lrrrrr}
+  \begin{tabular}{lcc}
     \toprule
-    & \multicolumn{2}{c}{Without arc} & \multicolumn{2}{c}{With arc} \\
-    & Thrust\tnote{a} (\si{\milli\newton}) & $I_{sp}$ (\si{\second}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) \\
+    & \multicolumn{2}{c}{Thrust (\si{\milli\newton})\tnote{*}} \\
+    Propellant & Without arc & With arc \\
     \midrule
-    Nitrogen & $12.5$ & $0$ & $ $ & $0$ \\
-    Argon    & $-58.1$\tnote{b} & $0$ & $0$ & $0$ \\ \midrule
-    Mean     & $-22.8$\tnote{b} & $ $ & $15.0$ & $ $  \\
+    Nitrogen & Inconclusive & Inconclusive \\
+    Argon    & $4.0$--$10.5$ & $7.3$--$14.2$\\
+    % \midrule
+    % Mean     & $-22.8$\tnote{b} & $ $ & $15.0$ & $ $  \\
     \bottomrule
   \end{tabular}
   \begin{tablenotes}
-  \item[a] Thrust data is the average tare load (\SI{21.0269}{\newton}) substracted from the average load observed during test fires for each propellant, after filtering.
-  \item[b] Negative thrust is a result of significant error from signal noise present in the tare and test data.
+  \item[*] Thrust data is the {\color{red}average tare load (\SI{0}{\newton})} substracted from the average load observed during test fires for each propellant, after filtering.
   \end{tablenotes}
 \end{threeparttable}
 \end{table}
