@@ -358,9 +358,13 @@ By collecting thrust data for cold gas only and with the PCU engaged, the effect
 For each data set, volumetric flow rate was measured by a flow meter in-line and downstream from the propellant supply pressure regulator.
 
 \section{Results}
+\subsection{Qualitative Performance}
 % Show results and how they compare to our pred|ictions. Describe any failures and the problem solving process that occurred.
 The PCU consistently generates and sustains an electric arc that spans from the tungsten electrode to the graphite nozzle.
 Using argon or nitrogen propellant, the gas is ionized and hot plasma is ejected from the nozzle, as shown in~\autoref{fig:burn-snapshots}.
+When supplied flow rate exceeded 25 cubic feet per hour (CFH), the exhaust remained partiallyy ionized.
+When flow rate was limited to between 22--25\si{CFH}, the exhaust appears to be fully ionized.
+This could be due to the gas partially choking in the throat of the nozzle, and not fully reaching sonic speed until specific conditions are reached.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{figs/burnsnapshots.png}
@@ -372,15 +376,16 @@ Using argon or nitrogen propellant, the gas is ionized and hot plasma is ejected
 \label{fig:burn-snapshots}}
 \end{figure}
 
+\subsection{Quantitative Performance}
 Empirically, the true thrust load is lost in measurement error, primarily due to a 10\% error in the load cell (Omega LCAE-6KG).
 Per Omega's instruction, calibrations were performed to remove this 10\% error, however after several different iterations of calibration, the results varied significantly and occasionally were not even linear, as shown in~\autoref{fig:curve}.
 Without a clear calibration to follow, the best method toward obtaining results was to create a linear trend of the useable calibration data and to bound that trend with a 95\% confidence interval, both in slope and intercept.
 The trend and interval were both calculated using MATLAB software's curve fitting toolbox, shown in~\autoref{tab:cal}.
 
-\begin{table}[h]
-  \caption{Omega LCAE-6KG Calibration and 95\% Bounds
-\label{tab:cal}
-}
+\begin{table}
+  \centering
+  \caption{95\% Confidence Bounds on Omega LCAE-6KG Calibration
+\label{tab:cal}}
   \begin{tabular}{lcc}
     \toprule
     & Intercept (\si{\volt}) & Slope (\si{\volt\per\milli\newton}) \\ \midrule
@@ -404,7 +409,7 @@ Additional measurement error is suspected to be caused by electromagnetic interf
 
 A Kaiser bandpass filter was applied to the data to smooth out noise spikes.
 Large spikes were not removed by the filtering, so windows were applied to ensure clean data.
-An example of the unfiltered and filtered data, as well as the windows applied to remove the remaining anomalies is shown in~\autoref{raw-data}.
+An example of the unfiltered and filtered data, as well as the windows applied to remove the remaining anomalies is shown in~\autoref{fig:raw-data}.
 
 % Low-frequency vibrations from the environment itself may also play a role since the test stand is located within the RIT Kate Gleason College of Engineering machine shop, where numerous lathes, mills, and other heavy machinery operate.
 % FS = 6kg = 6000g = 58860mN
@@ -422,7 +427,7 @@ An example of the unfiltered and filtered data, as well as the windows applied t
 
 \begin{figure}
   \includegraphics[width=\linewidth]{figs/raw-data.jpg}
-  \caption{}
+  \caption{Example two-second data set showing results of both filtering and windowing. Removed sections are highlighted in red.}
 \label{fig:raw-data}
 \end{figure}
 
@@ -437,23 +442,30 @@ Each data set was averaged and these averages are shown in~\autoref{tab:test-mea
 \end{figure}
 
 \begin{table}
-  \caption{Mean Load Cell Outputs for 4 Rounds of Testing
-\label{tab:test-means}
-}
-  \begin{tabular}{lcc}
+  \centering
+  \caption{Voltage means for hot-fire and cold-fire tests
+\label{tab:test-means}}
+  \begin{tabular}{rcc}
     \toprule
-    Round & Hot-Fire (with arc) & Cold-Fire\\
-
+    Test & Hot-Fire (with arc) & Cold-Fire \\ \midrule
+    1 & 1.9287 & 1.9195 \\
+    2 & 1.9192 & 1.9172 \\
+    3 & 1.9097 & 1.9103 \\
+    4 & 1.9131 & 1.9092 \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-To obtain the thrust average and errors of each test condition, the mean output voltages of all 12 hot-fire and all 16 cold-fire tests were averaged separately, and a 95% error bound for each test condition was created using 1.96 times the standard error of each group. These means and standard errors are plotted as horizontal lines on Figure (            X            ), which can then be traced back to where they meet with the linear calibration. For the lower bound of thrust, the lower bound of each test condition voltage is matched with the upper bound of the linear calibration, and for the upper bound of thrust the upper bound voltage of each test condition is matched with the lower bound of the linear calibration. This provides an range of thrust values taking into account 95% confidence on both the test measurements as well as the calibration itself.
+To obtain the thrust average and errors of each test condition, the mean output voltages of all 12 hot-fire and all 16 cold-fire tests were averaged separately, and a 95\% error bound for each test condition was created using 1.96 times the standard error of each group.
+These means and standard errors are plotted as horizontal lines on Figure, which can then be traced back to where they meet with the linear calibration. For the lower bound of thrust, the lower bound of each test condition voltage is matched with the upper bound of the linear calibration, and for the upper bound of thrust the upper bound voltage of each test condition is matched with the lower bound of the linear calibration.
+This provides an range of thrust values taking into account 95\% confidence on both the test measurements as well as the calibration itself.
 
 Metrics on the true performance of the thruster is inconclusive.
 Reporting thrust and specific impulse from these data would be highly uncertain and misleading.
 However, the data shows that thrust for tests with and without the PCU engaged are significantly statistically different.
 While the true performance can not be quantitatively determined, it is clear that the qualitative goal of achieving a change in performance over gold gas propulsion by ionizing propellant with an electric arc has been met.
+
+
 
 % \begin{figure}
 %   \includegraphics[width=\linewidth]{figs/tareload.png}
@@ -469,7 +481,22 @@ While the true performance can not be quantitatively determined, it is clear tha
 % \label{fig:data-noise-psd}
 % \end{figure}
 
-\section{Conclusions \& Recommendations}
+\section{Conclusions}
+While it is impossible to draw exact thrust values from the data collected, the difference in measured thrust between the hot-fire and cold-fire test conditions is significant.
+In three out of four rounds of testing, the hot-fire condition out-performed the cold-fire condition.
+Using MATLAB software, a null hypothesis of both data sets coming from populations with equal means is rejected at the 1\% significance level by both a standard T-test as well as a Kruskal-Wallis test of variance.
+Since the data sets were taken together, this suggests there is a consistent difference between the average thrust measured under each condition.
+As arcjet technology has been well researched and this has previously been shown to be the case, this result is consistent with other published research and the teams expectations.
+
+Should the calibration trend and thrust averages hold, the thrust benefit of hot-fire over cold is
+\begin{equation}
+  \Bigg(\frac{6.377 \text{[mN]}}{2.865 \text{[mN]}} - 1\Bigg)\times100\% = 122\%
+  \end{equation}
+This is similar in magnitude to the 200\% gain claimed by previous arcjet thruster systems~\cite{sutton2010rocket}. However, due to the noise present in the system and measurements, this number cannot be claimed as a result and more (and more precise) testing would need to be done to discern if that number is factual.
+
+The system was visually observed to be ionizing the gas in operation. The characteristic glows of nitrogen and argon were both seen during testing with each respective gas, and so qualitatively the system can be said to be working.
+
+\section{Recommendations}
 % Evaluate the success of the project and make recommendations for improving it.
 \subsection{Data Acquisition}
 In order to obtain accurate and repeatable results regarding the thrust output of the arcjet thruster, it is necessary to acquire a more precise force transducer.
@@ -478,6 +505,9 @@ The NI myDAQ device provides an adequate sampling rate and resolution for this t
 The downfall of the data acquisition portion of this application is simply due to the use of an imprecise instrument.
 The sensor used had a force rating of \SI{6}{\kilo\gram} $\pm$ 10\%, whereas the ideal solution would be to use a sensor with a maximum rating of \SI{1}{\kilo\gram} $\pm$ 0.5\% or similar.
 Low force sensor such as this, however, cost in excess of \$1000 and as such were deemed too expensive for the budget of this project.
+\subsection{Telemetry and Test Environment}
+Robust characterization of the thruster would only be possible with improved sensors, not only for thrust but also for temperatures of the gas and physical system.
+It may be possible to show in-space performance by testing the system in a low-pressure environmental chamber.
 
 \section*{Acknowledgments}
 The team thanks Mr.~Vincent Burolla for his unwavering support; the Mechanical Engineering Department, the Multidisciplinary Senior Design Department, and the Kate Gleason College of Engineering for their resources and workspaces; RIT Space Exploration and Boeing for sponsoring this project.
