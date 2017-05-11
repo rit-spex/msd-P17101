@@ -129,18 +129,19 @@ Argon (Ar) is a very cheap, easy-to-handle, and highly available alternative to 
 
 Gas enters the chamber and is ionized and heated by a high-current arc that extends from the cathode to the throat of the anodic nozzle to form a plasma.
 The plasma reaches sonic speed in the throat and is supersonically accelerated as it expands through the nozzle.
-Ideal flow performance is illustrated in \autoref{fig:flow-graphs}, assuming
-uniform flow across nozzle cross sections, isentropic flow conditions (except across shocks), zero vorticity, and unmoving flow at inlet.
+% Ideal flow performance is illustrated in \autoref{fig:flow-graphs}, assuming
+% uniform flow across nozzle cross sections, isentropic flow conditions (except across shocks), zero vorticity, and unmoving flow at inlet.
 
-\begin{figure}[htp]
-  \centering
-  \includegraphics[width=\linewidth]{figs/flow.png}
-  \caption[P17101 Arcjet Annotated Cutaway]{{\color{red}Update with predicted flow through nozzle, including shocks.}
-\label{fig:flow-graphs}
-}
-\end{figure}
+% \begin{figure}[htp]
+%   \centering
+%   \includegraphics[width=\linewidth]{figs/flow.png}
+%   \caption[P17101 Arcjet Annotated Cutaway]{{\color{red}Update with predicted flow through nozzle, including shocks.}
+% \label{fig:flow-graphs}
+% }
+% \end{figure}
 
-Thrust is a function of the momentum of the flow exiting the nozzle.
+Thrust is a function of the momentum of the flow exiting the nozzle, which is primarily driven by the pressure ratio between the total pressure of the propellant at the inlet and environmental pressure at the nozzle's exit.
+Greater environmental pressures decrease the performance of the nozzle, especially considering it is designed for space operation.
 \begin{equation}
 \label{eq:thrust}
   F=\dot{m}v_e + (p_e-p_b)A_e
@@ -153,28 +154,45 @@ Thrust is a function of the momentum of the flow exiting the nozzle.
  \label{eq:isp}
    I_{sp}=\frac{F}{\dot{m} g_0}
  \end{equation}
-% some calculations?
-In the ideal condition using gaseous N$_2$ as propellant, a conical nozzle with $\alpha=15$ is capable of {\color{red}\SI{0}{\newton} of thrust} without a sustained arc.
-At sea-level, {\color{red}\SI{0}{\newton} of thrust} is expected.
-{\color{red}Include theoretical calcs for cold thrust to compare performance with theory in order to validate design.
-Show $I_{sp}$ predictions for given thrust values and estimated mass flow rates.}
 
-\begin{table}[hbp]
-  \caption{Theoretical thrust and $I_{sp}$ values with respect to space and sea-level operation, total pressure $p_0= $\SI{239.2}{\kilo\pascal}.
-\label{tab:theoretical-performance}
-}
-{\color{red}
-  \begin{tabular}{lrrrrr}
-    \toprule
-    & & \multicolumn{2}{c}{Without arc} & \multicolumn{2}{c}{With arc} \\
-    & $p_b$ (\si{\kilo\pascal}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) \\
-    \midrule
-    Vacuum    & $0$     & $0$ & $0$ & $0$ & $0$ \\
-    Sea-level & $101.3$ & $0$ & $0$ & $0$ & $0$ \\
-    \bottomrule
-  \end{tabular}
-  }
-\end{table}
+The goal of ionizing the gas is to add energy with electricity such that the momentum of the exhaust is greater for the same amount of mass, thus improving the efficiency of the thruster.
+% some calculations?
+% In the ideal condition using gaseous N$_2$ as propellant, a conical nozzle with $\alpha=15$ is capable of {\color{red}\SI{0}{\newton} of thrust} without a sustained arc.
+% At sea-level, {\color{red}\SI{0}{\newton} of thrust} is expected.
+
+% \begin{table}[hbp]
+%   \caption{Theoretical thrust and $I_{sp}$ values with respect to space and sea-level operation, total pressure $p_0= $\SI{239.2}{\kilo\pascal}.
+% \label{tab:theoretical-performance}
+% }
+% {\color{red}
+%   \begin{tabular}{lrrrrr}
+%     \toprule
+%     & & \multicolumn{2}{c}{Without arc} & \multicolumn{2}{c}{With arc} \\
+%     & $p_b$ (\si{\kilo\pascal}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) & Thrust (\si{\newton}) & $I_{sp}$ (\si{\second}) \\
+%     \midrule
+%     Vacuum    & $0$     & $0$ & $0$ & $0$ & $0$ \\
+%     Sea-level & $101.3$ & $0$ & $0$ & $0$ & $0$ \\
+%     \bottomrule
+%   \end{tabular}
+%   }
+% \end{table}
+
+The thruster was simulated for the cold gas case without an electric arc using the SolidWorks Flow Simulation computational fluid dynamics package, shown in~\autoref{fig:flowsim}.
+As shown in the simulation, the cold gas does not reach sonic speed at sea-level pressures.
+Without an arc, the flow does go supersonic in a vacuum, but not enough to provide sufficient thrust to a spacecraft.
+Exit velocity is shown to increase with an increase in inlet pressure as well.
+
+The behavior of the gas in response to an electric arc was not possible to model in SolidWorks, and the heat transferred to the gas by the arc is difficult to model analytically~\cite{mitarcjets}.
+The team decided to observe effects of introducing an arc to the flow empirically.
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{figs/flowsim}
+  \caption{Nitrogen gas was simulated without the electric arc through the nozzle with SolidWorks Flow Simulation.
+  \emph{Top: }\SI{20}{psi} inlet pressure, \SI{1}{atm} (sea-level) environmental pressure.
+  \emph{Center: }\SI{20}{psi} inlet pressure, \SI{0.1}{atm} (near-vacuum) environmental pressure.
+  \emph{Top: }\SI{200}{psi} inlet pressure, \SI{0.1}{atm} (near-vacuum) environmental pressure.}
+\label{fig:flowsim}
+\end{figure}
 
 \section{System Overview}
 % outline the main system architecture.
@@ -184,6 +202,7 @@ Propellant flows into a stainless steel body and is spun into a vortex about the
 The flow swirler doubles as a high-temperature ceramic insulator.
 The insulator and cathode are mounted concentrically into a low-temperature PTFE thermal and electrical insulator, which is fixed to the thruster test stand.
 The nozzle is electrically insulated from the steel body by a non-conductive ceramic spacer.
+
 % how much energy transferred from arc to plasma?
 \begin{figure}[htp]
   \centering
@@ -203,7 +222,10 @@ This architecture is similar to a plasma torch and has been demonstrated in simi
 % explain HV side here
 \SI{120}{\volt} AC power is supplied to the PCU from a standard wall outlet.
 The HV side of the circuit raises the voltage by several orders of magnitude.
-A tungsten rod serves as the cathode of the HV circuit, and the graphite nozzle of the thruster acts as the anode.  When the arc jumps between the cathode and anode across the flowpath, it closes the HC portion of the circuit.
+The small capacitor and dimmer switch send a signal to the ignition coil to generate a HV low current arc similar to a spark plug.
+This arc is created between the small auxilary tungsten in the alumina silicate insulator and the main tungsten electrode.
+The HV arc allow the larger capacitor and power resistors to discharge an HC arc, ``primed'' by the HV arc, that ionizes the gas and forms a plasma from the main tungsten to the graphite nozzle.
+When performing properly all subsequent gas must flow through this plasma, imparting heat, and therefore energy that leads to better performance than a cold gas configuration alone.
 This current passes through a coil that activates a reed switch, turning off the HV side of the PCU.\@
 
 \begin{figure}[htp]
@@ -372,7 +394,11 @@ Additional measurement error is suspected to be caused by electromagnetic interf
 % % Matt Giuffre [9:04 PM]
 % % It's a Kaiser window FIR filter. It essentially a very aggressive gaussian window. It attenuates at -60dB/decade at the stopband as opposed to the -20dB/decade which is standard. This is because I assumed the data to be relatively steady
 % A filtered tare load for the system with no gas flowing through the nozzle is shown in \autoref{fig:tare-data}.
-
+\begin{figure}
+  \includegraphics{figs/thrust-data.jpg}
+  \caption{}
+\label{fig:thrust-data}
+\end{figure}
 Metrics on the true performance of the thruster is inconclusive.
 Reporting thrust and specific impulse from these data would be highly uncertain and misleading.
 However, the data shows that thrust for tests with and without the PCU engaged are significantly statistically different.
@@ -388,7 +414,6 @@ While the true performance can not be quantitatively determined, it is clear tha
     & \multicolumn{2}{c}{Thrust (\si{\milli\newton})\tnote{*}} \\
     Propellant & Without arc & With arc \\
     \midrule
-    Nitrogen & Inconclusive & Inconclusive \\
     Argon    & $4.0$--$10.5$ & $7.3$--$14.2$\\
     % \midrule
     % Mean     & $-22.8$\tnote{b} & $ $ & $15.0$ & $ $  \\
@@ -416,6 +441,13 @@ While the true performance can not be quantitatively determined, it is clear tha
 
 \section{Conclusions \& Recommendations}
 % Evaluate the success of the project and make recommendations for improving it.
+\subsection{Data Acquisition}
+In order to obtain accurate and repeatable results regarding the thrust output of the arcjet thruster, it is necessary to acquire a more precise force transducer.
+Since NASA's estimate for thrust output of the arcjet is on the order of \SI{50}{\milli\newton}, the sensor should have a systematic uncertainty on the order of $\pm$ \SI{5}{\milli\newton}.
+The NI myDAQ device provides an adequate sampling rate and resolution for this task, and as such would not need to be substituted.
+The downfall of the data acquisition portion of this application is simply due to the use of an imprecise instrument.
+The sensor used had a force rating of \SI{6}{\kilo\gram} $\pm$ 10\%, whereas the ideal solution would be to use a sensor with a maximum rating of \SI{1}{\kilo\gram} $\pm$ 0.5\% or similar.
+Low force sensor such as this, however, cost in excess of \$1000 and as such were deemed too expensive for the budget of this project.
 
 \section*{Acknowledgments}
 The team thanks Mr.~Vincent Burolla for his unwavering support; the Mechanical Engineering Department, the Multidisciplinary Senior Design Department, and the Kate Gleason College of Engineering for their resources and workspaces; RIT Space Exploration and Boeing for sponsoring this project.
