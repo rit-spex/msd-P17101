@@ -11,7 +11,6 @@
 \usepackage{chngcntr}
 \usepackage{color}
 \makenomenclature{}
-
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of IEEE. Loading the cite package will
@@ -28,7 +27,6 @@
 % The documentation is contained in the cite.sty file itself.
 
 % http://edge.rit.edu/edge/P17101/public/Home
-
 \title{P17101: Design of a 1kW Arcjet Thruster}
 \author{
   Philip~Linden$^{*}$\thanks{$^{*}$MEng Student, Department of Mechanical Engineering},
@@ -50,7 +48,7 @@
 \begin{abstract}
 An electrothermal propulsion system was developed for RIT Space Exploration (SPEX) to develop opportunities for design, testing, and characterization of advanced space systems at the Rochester Institute of Technology such as high-efficiency in-space propulsion for station-keeping maneuvers.
 % The arcjet thruster demonstrates the degree of practicality in implementing electrothermal propulsion systems.
-The thruster assembly generates an electrical arc across the thruster nozzle's throat, ionizing nitrogen or argon propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
+The thruster assembly generates an electrical arc across the thruster nozzle's throat, ionizing argon propellant in order to achieve a greater specific impulse compared to cold gas propulsion.
 \end{abstract}
 
 \label{sec:nomenclature}
@@ -78,6 +76,10 @@ The thruster assembly generates an electrical arc across the thruster nozzle's t
   \nomunit{\,\si{\second}}}
 \nomenclature{$g_0$}{Standard acceleration due to gravity
   \nomunit{\,\SI{9.81}{\meter\per\second\squared}}}
+\nomenclature{\sigma_m}{Mean Standard Error}
+  \nomunit{\,[-]}
+\nomenclature{\sigma}{Standard Deviation of a Sample}
+  \nomunit{\,[-]}
 \printnomenclature{}
 
 \section{Introduction}
@@ -100,7 +102,7 @@ A tabletop version does not require integration with a spacecraft, and mass and 
 \section{Design Theory}
 \label{sec:method}
 % Describe why an arcjet was selected over a resistojet.
-In low power (\SI{1}{\kilo\watt}) applications, an arcjet offers up to 200\% gains in efficiency over a resistojet thruster~\cite{sutton2010rocket}.
+In low power (1 kW) applications, an arcjet offers up to 200\% gains in efficiency over a resistojet thruster~\cite{sutton2010rocket}.
 \autoref{fig:power-vs-isp} identifies the typical use cases and performance characteristics of arcjets compared to various other types of electrothermal thrusters.
 Arcjets achieve a greater specific impulse compared to resistojets but produce less thrust.
 Thus a maneuver would take a longer amount of time using an arcjet but would consume less propellant overall for the same maneuver as compared to a resistojet.
@@ -117,7 +119,7 @@ The ideal propellant for arcjet engines is one which can be stored for long peri
 NASA identifies Hydrogen (H$_{2}$), Ammonia (NH$_{3}$), and Hydrazine (N$_{2}$H$_{3}$) as ideal propellants for arcjets~\cite{nasa1992considerations}.
 Unfortunately, these gases are toxic or difficult to handle on a university campus.
 Nitrogen (N$_{2}$) is an easy-to-handle alternative that has relatively favorable ionization and thermodynamic characteristics, and has been used in similar low-power arcjet demonstrations~\cite{olin2012report,olin2012sim}.
-Argon (Ar) is a very cheap, easy-to-handle, and highly available alternative to nitrogen, and has similar characteristics.
+Argon (Ar) is a very cheap, easy-to-handle, and highly available alternative to these propellants, and has similar characteristics regarding breakdown voltage and ionization energy. As Argon was already available for use on RIT's campus, this was selected for testing.
 % High level gas dynamics analysis
 \begin{figure}[htp]
   \centering
@@ -200,8 +202,8 @@ The team decided to observe effects of introducing an arc to the flow empiricall
 % Describe the main components of the thruster and how they interact. Be sure to include material selection justifications. Show some basic analysis and predictions for performance with justification.
 Propellant flows into a stainless steel body and is spun into a vortex about the tip of the cathode, where it passes through an electric arc before being accelerated through a conical nozzle.
 The flow swirler doubles as a high-temperature ceramic insulator.
-The insulator and cathode are mounted concentrically into a low-temperature PTFE thermal and electrical insulator, which is fixed to the thruster test stand.
-The nozzle is electrically insulated from the steel body by a non-conductive ceramic spacer.
+The insulator and cathode are mounted concentrically into a low-temperature PTFE thermal and electrical insulator, which is fixed to the thruster test stand via toe clamps.
+The nozzle is electrically insulated from the steel body by a non-conductive alumina spacer.
 
 % how much energy transferred from arc to plasma?
 \begin{figure}[htp]
@@ -223,8 +225,8 @@ This architecture is similar to a plasma torch and has been demonstrated in simi
 \SI{120}{\volt} AC power is supplied to the PCU from a standard wall outlet.
 The HV side of the circuit raises the voltage by several orders of magnitude.
 The small capacitor and dimmer switch send a signal to the ignition coil to generate a HV low current arc similar to a spark plug.
-This arc is created between the small auxilary tungsten in the alumina silicate insulator and the main tungsten electrode.
-The HV arc allow the larger capacitor and power resistors to discharge an HC arc, ``primed'' by the HV arc, that ionizes the gas and forms a plasma from the main tungsten to the graphite nozzle.
+This arc is created between the small auxilary copper electrode in the alumina silicate insulator and the main tungsten electrode and ``primes'' the gas to reduce the breakdown voltage.
+The HV arc allows the larger capacitor and power resistors to discharge an HC arc, that ionizes the gas and forms a plasma between the main tungsten to the graphite nozzle.
 When performing properly all subsequent gas must flow through this plasma, imparting heat, and therefore energy that leads to better performance than a cold gas configuration alone.
 This current passes through a coil that activates a reed switch, turning off the HV side of the PCU.\@
 
@@ -258,13 +260,12 @@ All tests were performed with the \SI{15}{\ohm} configuration.
 The HC circuit has a coil that activates a reed switch when on.
 The reed switch activates a relay which turns off the HV circuit.
 
-The PCU is housed in a modified mid-tower aluminum computer case shown in~\autoref{fig:pcu-annotated}.
+The PCU is housed in a modified computer server chassis shown in~\autoref{fig:pcu-annotated}.
 This provides a grounded area with many tie-down points for electrical components to be placed.
-The computer case is laid on its side with one side panel removed.
-Clearance holes for component stakes are drilled through the panels and components are secured with screws or cable ties.
+Clearance holes for component stakes are drilled through the panels and components are secured with screws, cable ties, and 3M double sided tape
 Two desktop computer case fans are mounted in the back of the PCU housing to provide some airflow to cool the power resistors during operation.
 
-During nominal operation, the PCU draws $900$--$1100$\si{\watt} from the wall outlet.
+During nominal operation, the PCU draws $1700$--$1800$\si{\watt} from the wall outlet.
 
 \subsection{Test Stand}
 % Explain the physical apparatus that measures the system's outputs. Describe the interactions between the thruster and the test stand. Justify instrumentation selection.
@@ -278,7 +279,7 @@ The thruster is mounted to the test platform using a set of three toe-clamps to 
 The stand's construction allows for some variability in expected test results through a set of slots used to position the load cell. Since it offers a small form facto, the complete mechanical system can be accommodated in a range of different testing environments such as the engine test cell that is used to complete these initial studies.
 
 \begin{figure}[htp]
-  \includegraphics[width=\linewidth]{figs/teststand-annotated.png}
+  \includegraphics[width=\linewidth]{figs/teststand-annotated.PNG}
   \caption{An annotated view of the thruster assembly and test stand in the test configuration.
   \emph{Not shown:} A compressed gas dewar with an inline flow meter and regulator valve are connected to the gas inlet tube (4) prior to the solenoid valve.
 \label{fig:teststand-annotated}
@@ -286,7 +287,7 @@ The stand's construction allows for some variability in expected test results th
 \end{figure}
 
 \begin{figure}[htp]
-  \includegraphics[width=\linewidth]{figs/pcu-annotated.png}
+  \includegraphics[width=\linewidth]{figs/pcu-annotated.PNG}
   \caption{An annotated view of the open PCU.\@
   Small components such as relays are not labeled here for clarity.
   The the top cover of the PCU housing (not shown) may be installed to enclose the system completely.
@@ -295,8 +296,8 @@ The stand's construction allows for some variability in expected test results th
 \end{figure}
 
 Propellant is supplied by a compressed gas dewar at \SI{2200}{psi}.
-The GN$_2$ is nominally regulated to \SI{20}{psi} before reaching a normally-closed solenoid valve.
-GN$_2$ is flowed through the system for several seconds before PCU ignition to ensure only propellant is present in the thruster, and after PCU shutdown to cool hot thruster components.
+The gaseous argon is nominally regulated to \SI{20}{psi} before reaching a normally-closed solenoid valve.
+Argon is flowed through the system for several seconds before PCU ignition to ensure only propellant is present in the thruster, and after PCU shutdown to help cool hot thruster components.
 
 The propellant solenoid and PCU are activated and deactivated toggle switches next to an emergency shut-off button, shown in~\autoref{fig:pcu-annotated}.
 
@@ -308,7 +309,7 @@ The USB-6008 device offers more overall channels (4 analog input) but with a muc
 The MyDAQ device only offers 2 analog input channels but offers \SI{200}{kS/s} at 16-bit resolution. It was determined that the primary performance metric would be the thrust force generated during a burn with pressure inside the main body being a secondary performance metric.
 Acquiring data for these metrics would only require two analog input channels and as such, the MyDAQ device was chosen for its superior precision.
 Both devices were also capable of generating an output which would be sufficient to actuate the transistors, which in turn activate the PCU and propellant solenoid, so this parameter was not taken into consideration during device selection.
-Initially the DAQ was configured to send control commands to activate and deactivate the PCU and solenoid, but was later removed due to errors encountered during testing.
+Initially the DAQ was configured to send control commands to activate and deactivate the PCU and solenoid, but this was later removed due to errors encountered during testing. Toggle switches were then mounted to the front of the server chassis to manually control the solenoid and PCU.
 
 The test engineer starts and stops recording a test data set with the VI (see~\autoref{fig:VI-frontpanel}) from a computer connected to the test stand.
 Once the proper channels are selected for data acquisition (analog inputs), the DAQ parameters may be chosen (i.e.\ sample rate \& number of samples per channel).
@@ -317,11 +318,11 @@ After a data set is collected, it is displayed on an amplitude versus time plot.
 
 \subsection{Safety Measures}
 % Describe risk management in more detail. Consider ommitting this section~\cite{linden}.
-In the event of a computer malfunction, an emergency shutoff button is wired into the circuit between the outlet and the PCU and the solenoid is normally closed and non-latching.
+Several safety measures were included in order to mitigate the risk in operating the system. A thermal cut-off switch opens in the main power line at a temperature of \SI{250}{F} and re-closes at \SI{210}{F}. In the event of a computer malfunction, an emergency shutoff button is wired into the circuit between the outlet and the PCU and the solenoid is normally closed and non-latching.
 This emergency shut-off and the toggle switches used to engage the PCU and solenoid are mounted behind a locking door such that the emergency shut-off button is pressed when the door is closed.
 The safety door is closed whenever the system is not in use, and locked when the system is stored.
 
-When a test is conducted, the test stand is placed in a well-ventilated Formula SAE engine test cell, and the control computer is located outside the testing room.
+When a test is conducted, the test stand is placed in a ventilated dynamometer test cell, and the control computer is located outside the testing room.
 The VI monitors sensor data in real-time and shuts down operation when sensor parameters reach unsafe limits, and may be stopped via the stop button on the front panel or by the satisfaction of a number of safety interlocks present within the block diagram.
 Examples of these interlocks are errors in the DAQ sequence, positive gauge pressure present in the thruster's main body before starting the VI, or a ten second timeout.
 
@@ -331,12 +332,12 @@ Examples of these interlocks are errors in the DAQ sequence, positive gauge pres
 
 \section{Test Procedure}
 % Describe the basic test plan in broad terms and how we approached testing. Describe the setup within the engine test cell and how the user interacts with the system.
-The test stand, PCU, and propellant supply canister are placed in an engine test cell used by RIT's Formula SAE club.
+The test stand, PCU, and propellant supply canister are placed in an engine test cell located in the RIT Department of Mechanical Engineering Machine Shop.
 This space is typically used for engine testing and is outfitted with reinforced doors, walls, and windows, a ventilation system, and an adjacent room fitted with computers.
 The arcjet thruster assembly is in view of the computer room windows.
-Wires for data acquisition and control are fed through a pass-through between the two rooms and connected to a National Instruments myDAQ, which is connected to a computer running the DAQ VI.\@
+Wires for data acquisition and control are fed from the National Instruments myDAQ device, and are connected to a computer running the DAQ VI.\@
 
-The thrust load cell is calibrated in the test configuration by placing precision masses on the nozzle and recording at least 2 data sets for each calibration load.
+The thrust load cell is calibrated in the test configuration by placing precision masses at the thrust location on the nozzle and recording at least 3 data sets for each calibration load.
 The calibration loads are used to correlate output voltage from the load cell into force data.
 
 % \begin{figure}
@@ -345,25 +346,25 @@ The calibration loads are used to correlate output voltage from the load cell in
 % \label{fig:loadcell-cal}
 % \end{figure}
 
-For each test, the test cell is evacuated and its doors are closed.
+For each test, the test cell doors are closed to minimize outside noise and as a protection measure.
 The propellant solenoid valve opens one to two seconds before the PCU engages to purge air from the system to ensure only propellant is present in the thruster.
 The PCU ignites the arc and sustains it for at least five seconds.
 The PCU disengages and cold gas continues to flow for an additional two to five seconds in order to cool the thruster.
-The solenoid valve closes and the system is safed before the test cell is opened.
-Thrust and pressure data are saved to a comma-delimited text file.
+The solenoid valve closes and the system is safed via the emergency shut-off.
+Thrust and pressure data are saved to a tab-delimited text file.
 
 Load cell data was collected for no operation, cold gas only, and gas flow with the PCU engaged.
 The data set for no operation is used to tare the thrust scale and allow the weight of the system to be filtered out of other test data sets.
 By collecting thrust data for cold gas only and with the PCU engaged, the effects of adding heat to the gas with an electric arc may be assessed.
-For each data set, volumetric flow rate was measured by a flow meter in-line and downstream from the propellant supply pressure regulator.
+For each data set, volumetric flow rate was measured by a flow meter in-line and downstream from the propellant supply.
 
 \section{Results}
 \subsection{Qualitative Performance}
 % Show results and how they compare to our pred|ictions. Describe any failures and the problem solving process that occurred.
-The PCU consistently generates and sustains an electric arc that spans from the tungsten electrode to the graphite nozzle.
+The thruster was unable to completely ionize the gas when operating at the \SI{1}{\kilo\watt} power limit originally imposed on the project. In order to achieve consistent ionization, one of the two power resistors originally included in the circuit was removed in order to double the power and current flowing through the system. This updated schematic with only one power resistor is shown in~\autoref{fig:pcu-schematic}. After doubling the power from \SI{925}{\watt} to \SI{1850}{\watt}, the PCU consistently generates and sustains an electric arc that spans from the tungsten electrode to the graphite nozzle.
 Using argon or nitrogen propellant, the gas is ionized and hot plasma is ejected from the nozzle, as shown in~\autoref{fig:burn-snapshots}.
-When supplied flow rate exceeded 25 cubic feet per hour (CFH), the exhaust remained partiallyy ionized.
-When flow rate was limited to between 22--25\si{CFH}, the exhaust appears to be fully ionized.
+When supplied flow rate exceeded 25 cubic feet per hour (CFH), the exhaust remained partially ionized.
+When flow rate was limited to 22\si{CFH}, the exhaust appears to be fully ionized.
 This could be due to the gas partially choking in the throat of the nozzle, and not fully reaching sonic speed until specific conditions are reached.
 
 \begin{figure}
@@ -407,9 +408,9 @@ On the millinewton scale, load cell measurement data is very noisy, and signal n
 % Beyond the reach of any load cell costing < $3000
 Additional measurement error is suspected to be caused by electromagnetic interference from the high-voltage components operating in close proximity to telemetry cables.
 
-A Kaiser bandpass filter was applied to the data to smooth out noise spikes.
-Large spikes were not removed by the filtering, so windows were applied to ensure clean data.
-An example of the unfiltered and filtered data, as well as the windows applied to remove the remaining anomalies is shown in~\autoref{fig:raw-data}.
+A Kaiser window FIR filter was applied to the data to smooth out noise spikes.
+Some large spikes were not removed by the filtering, so windows were then also applied to ensure clean data.
+An example of the unfiltered and filtered data, as well as the windows applied to remove the remaining anomalies is shown in~\autoref{fig:raw-data}. The results of filtering the calibration and cold-fire data is shown in~\autoref{fig:other-raw-data}. While the filter did smooth out the results for these conditions, it left a large amount of low-frequency sinusoidal noise. This filtering did not adjust the averages of these data sets significantly, and so these data sets were left unfiltered for analysis in order to be computationally efficient.
 
 % Low-frequency vibrations from the environment itself may also play a role since the test stand is located within the RIT Kate Gleason College of Engineering machine shop, where numerous lathes, mills, and other heavy machinery operate.
 % FS = 6kg = 6000g = 58860mN
@@ -431,13 +432,18 @@ An example of the unfiltered and filtered data, as well as the windows applied t
 \label{fig:raw-data}
 \end{figure}
 
+\begin{figure}
+  \includegraphics[width=\linewidth]{figs/other-raw-data.png}
+  \caption{One second sets of Calibration and Cold-Fire data showing results of filtering on sinusoidal noise}
+\label{fig:other-raw-data}
+\end{figure}
+
 In each of four rounds of testing, three two-second tests at 100,000 data samples per second were taken of the thruster firing, and four two-second tests at 100,000 data samples per second were taken of cold gas firing.
-Filters were only applied to the ``hot-fire'' data sets, since the cold-fire data did not show significant noise enough to warrant it.
 Each data set was averaged and these averages are shown in~\autoref{tab:test-means}.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{figs/thrust-data.jpg}
-  \caption{Interval for output voltage from the load cell plotted against the 95\% interval for calibration.}
+  \caption{95\% Interval for output voltage from the load cell plotted against 95\% calibration interval.}
 \label{fig:curve}
 \end{figure}
 
@@ -456,14 +462,18 @@ Each data set was averaged and these averages are shown in~\autoref{tab:test-mea
   \end{tabular}
 \end{table}
 
-To obtain the thrust average and errors of each test condition, the mean output voltages of all 12 hot-fire and all 16 cold-fire tests were averaged separately, and a 95\% error bound for each test condition was created using 1.96 times the standard error of each group.
-These means and standard errors are plotted as horizontal lines on Figure, which can then be traced back to where they meet with the linear calibration. For the lower bound of thrust, the lower bound of each test condition voltage is matched with the upper bound of the linear calibration, and for the upper bound of thrust the upper bound voltage of each test condition is matched with the lower bound of the linear calibration.
+To obtain the thrust average and errors of each test condition, the mean output voltages of all 12 hot-fire and all 16 cold-fire tests were averaged separately, and a 95\% error bound for each test condition was created using 1.96 times the standard error of each group. These errors for sample size N were calculated as
+\begin{equation}
+\label{eq:stderr}
+  \sigma_m = \frac{\sigma}{\sqrt(N)}
+\end{equation}
+These means and standard errors are plotted as horizontal lines on~\autoref{fig:curve}, which can then be traced back to where they meet with the linear calibration. For the lower bound of thrust, the lower bound of each test condition voltage is matched with the upper bound of the linear calibration, and for the upper bound of thrust the upper bound voltage of each test condition is matched with the lower bound of the linear calibration.
 This provides an range of thrust values taking into account 95\% confidence on both the test measurements as well as the calibration itself.
 
 Metrics on the true performance of the thruster is inconclusive.
-Reporting thrust and specific impulse from these data would be highly uncertain and misleading.
-However, the data shows that thrust for tests with and without the PCU engaged are significantly statistically different.
-While the true performance can not be quantitatively determined, it is clear that the qualitative goal of achieving a change in performance over gold gas propulsion by ionizing propellant with an electric arc has been met.
+Claiming thrust and specific impulse results from these data would be highly uncertain and potentially misleading.
+However, the data shows that thrust for tests with and without the arc engaged are statistically different.
+While the true performance can not be quantitatively determined, it is clear that the qualitative goal of achieving a change in performance over cold gas propulsion by ionizing propellant with an electric arc has been met.
 
 
 
@@ -482,35 +492,44 @@ While the true performance can not be quantitatively determined, it is clear tha
 % \end{figure}
 
 \section{Conclusions}
+The system was visually observed to be ionizing the gas in operation. The characteristic glows of nitrogen and argon were both seen during testing with each respective gas, and so qualitatively the system can be said to be working.
+
 While it is impossible to draw exact thrust values from the data collected, the difference in measured thrust between the hot-fire and cold-fire test conditions is significant.
 In three out of four rounds of testing, the hot-fire condition out-performed the cold-fire condition.
-Using MATLAB software, a null hypothesis of both data sets coming from populations with equal means is rejected at the 1\% significance level by both a standard T-test as well as a Kruskal-Wallis test of variance.
-Since the data sets were taken together, this suggests there is a consistent difference between the average thrust measured under each condition.
+Using MATLAB software, a null hypothesis of both overall data sets coming from populations with equal means is rejected at the 1\% significance level by both a standard T-test as well as a Kruskal-Wallis test of variance.
+Since the data sets were taken sequentially, this suggests there is a consistent difference between the average thrust measured under each condition.
+An important point to note is that these hypothesis are rejected by combining all raw cold-fire data into one set, and all filtered hot-fire data into one set. If the same tests are run on arrays containing the means of each individual data set, the null hypothesis cannot be rejected as there is approximately a 22\% chance of each sample coming from populations with the equal means. 
 As arcjet technology has been well researched and this has previously been shown to be the case, this result is consistent with other published research and the teams expectations.
 
 Should the calibration trend and thrust averages hold, the thrust benefit of hot-fire over cold is
 \begin{equation}
   \Bigg(\frac{6.377 \text{[mN]}}{2.865 \text{[mN]}} - 1\Bigg)\times100\% = 122\%
   \end{equation}
-This is similar in magnitude to the 200\% gain claimed by previous arcjet thruster systems~\cite{sutton2010rocket}. However, due to the noise present in the system and measurements, this number cannot be claimed as a result and more (and more precise) testing would need to be done to discern if that number is factual.
-
-The system was visually observed to be ionizing the gas in operation. The characteristic glows of nitrogen and argon were both seen during testing with each respective gas, and so qualitatively the system can be said to be working.
+This is similar in magnitude to the 200\% gain claimed by previous arcjet thruster systems~\cite{sutton2010rocket}. However, due to the noise and error present in the system and measurements, this number cannot be claimed as a true result and more (and more precise) testing would need to be done to discern if that number is factual.
 
 \section{Recommendations}
 % Evaluate the success of the project and make recommendations for improving it.
 \subsection{Data Acquisition}
-In order to obtain accurate and repeatable results regarding the thrust output of the arcjet thruster, it is necessary to acquire a more precise force transducer.
-Since NASA's estimate for thrust output of the arcjet is on the order of \SI{50}{\milli\newton}, the sensor should have a systematic uncertainty on the order of $\pm$ \SI{5}{\milli\newton}.
+Ultimately, in order to obtain accurate and repeatable results regarding the thrust output of the arcjet system, a more precise force transducer must be used.
+Since NASA's estimate for thrust output of the arcjet is on the order of \SI{50}{\milli\newton}, the ideal sensor should have a systematic uncertainty on the order of $\pm$ \SI{5}{\milli\newton}.
 The NI myDAQ device provides an adequate sampling rate and resolution for this task, and as such would not need to be substituted.
-The downfall of the data acquisition portion of this application is simply due to the use of an imprecise instrument.
+The downfall of the data acquisition portion of this application is primarily due to the use of an imprecise instrument.
 The sensor used had a force rating of \SI{6}{\kilo\gram} $\pm$ 10\%, whereas the ideal solution would be to use a sensor with a maximum rating of \SI{1}{\kilo\gram} $\pm$ 0.5\% or similar.
 Low force sensor such as this, however, cost in excess of \$1000 and as such were deemed too expensive for the budget of this project.
+Further, shielded wire could be used to prevent electrical noise, however the noise in the hot-fire data files was successfully filtered out and the dominant noise in cold-fire test data was sinusoidal vibrations around 30Hz from the machine shop environment. Reducing/eliminating these vibrations would significantly improve test accuracy.
 \subsection{Telemetry and Test Environment}
 Robust characterization of the thruster would only be possible with improved sensors, not only for thrust but also for temperatures of the gas and physical system.
-It may be possible to show in-space performance by testing the system in a low-pressure environmental chamber.
+It may be possible to show in-space performance by testing the system in a low-pressure environmental chamber. Further, while the oil-impregnated bronze used as a rotational shaft in the test stand design seemed to function adequately, a ball-bearing design would be more appropriate and might reduce any possible rotational friction.
+\subsection{Thruster Design}
+The high-voltage electrode was late in the design once it became clear it was needed to prime the gas. Consequently, the alignment hole drilled through the side of the insulator was a very temporary fix. If the placement of the HV electrode in the disc insulator is to remain in the future, either the insulator should be thickened, or another local insulation method should be pursued to prevent unwanted arcing that was sometimes observed between the HV electrode and the nozzle/stainless steel body.
+The flow rate observed during testing was \SI{20--25}{CFH}. This is higher than what is reported in similar systems and could end up limiting the maximum specific impulse of the thruster. Interestingly, there was little observed difference between a nozzle with a .050'' throat and a nozzle with the .025'' throat. A third nozzle could be made with an .013'' throat ($\#$80 drill) to see if the flow can be more effectively limited. 
+\subsection{Control and Circuitry}
+Originally, the PCU and solenoid were designed to be controlled by MOSFET via a \SI{5}{\volt} output signal from the DAQ, thus allowing the operator to be in a different room than the test setup. The MOSFETs selected consistently shorted over the course of testing for unknown reasons. Given when this problem was identified, toggle switches were judged to be an acceptable risk to get the system properly functioning in time. In the future, a more robust control circuit would allow remote activation as originally intended and would lead to much safer operation. 
+While the hot water heater elements served adequately as power resistors, they heated up extremely quickly (\SI{15}{\celsius\per\sec}) and warped under thermal load. The heater elements have a finite lifespan in air, and a more permanent cooling or other resistive solution could be designed in the future. 
+
 
 \section*{Acknowledgments}
-The team thanks Mr.~Vincent Burolla for his unwavering support; the Mechanical Engineering Department, the Multidisciplinary Senior Design Department, and the Kate Gleason College of Engineering for their resources and workspaces; RIT Space Exploration and Boeing for sponsoring this project.
+The team thanks Mr.~Vincent Burolla and Dr.~Dorin Patru for their unwavering support; the Mechanical and Electrical Engineering Departments, the Multidisciplinary Senior Design Department, and the Kate Gleason College of Engineering for their resources and workspaces; RIT Space Exploration and The Boeing Company for sponsoring this project.
 
 \bibliographystyle{IEEEtran}
 \bibliography{p17101}
@@ -521,19 +540,21 @@ The team thanks Mr.~Vincent Burolla for his unwavering support; the Mechanical E
 \counterwithin{figure}{section}
 \section{PCU Schematic}
 \begin{figure}[h!]
-  \includegraphics[angle=90,height=.9\vsize,keepaspectratio]{figs/PCU_Schematic_No_AI_4_27_new.png}
+  \includegraphics[angle=90,height=.8\vsize,keepaspectratio]{figs/PCU_Schematic_No_AI_4_27_new.png}
   \caption{Electrical diagram of the PCU.}
 \label{fig:pcu-schematic}
+
+
 \end{figure}
 
-\section{Data Aqcuisition \& Control Virtual Interface}
-% Images will need to be updated once proper data acquisition/recording and safety interlocks are implemented.
-\begin{figure}[htp]
-  \includegraphics[height=.6\vsize,keepaspectratio]{figs/VI_30Mar17_FP.png}
-  \caption{The user interface for the DAQ/Control VI.\@
-\label{fig:VI-frontpanel}
-}
-\end{figure}
+%\section{Data Aqcuisition \& Control Virtual Interface}
+%% Images will need to be updated once proper data acquisition/recording and safety interlocks are implemented.
+%\begin{figure}[htp]
+%  \includegraphics[height=.6\vsize,keepaspectratio]{figs/VI_30Mar17_FP.png}
+%  \caption{The user interface for the DAQ/Control VI.\@
+%\label{fig:VI-frontpanel}
+%}
+%\end{figure}
 
 % \begin{figure}[htp]
 %   \includegraphics[height=.5\vsize,keepaspectratio]{figs/VI_30Mar17.png}
