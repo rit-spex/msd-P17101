@@ -27,13 +27,14 @@
 % The documentation is contained in the cite.sty file itself.
 
 % http://edge.rit.edu/edge/P17101/public/Home
-\title{P17101: Design of a 1kW Arcjet Thruster}
+\title{Multidisciplinary Senior Design P17101: \\ Design of a 1kW Arcjet Thruster}
 \author{
   Philip~Linden$^{*}$\thanks{$^{*}$MEng Student, Department of Mechanical Engineering},
   James~Gandek$^{\dagger}$\thanks{$^{\dagger}$BS Student, Department of Mechanical Engineering},
   Dylan~Bruce$^{\dagger}$,
   Matt~Giuffre$^{\dagger}$,
-  Anthony~Higgins$^{\ddagger}$\thanks{$^{\ddagger}$BS Student, Department of Electrical Engineering}
+  Anthony~Higgins$^{\ddagger}$\thanks{$^{\ddagger}$BS Student, Department of Electrical Engineering},
+  David~Yin$^{\ddagger\S}$\thanks{$^{\S}$Only contributed to MSD I}
 }
   % page header for pages other than cover page
   \markboth{P17101 Arcjet Thruster}%
@@ -58,27 +59,25 @@ The thruster assembly generates an electrical arc across the thruster nozzle's t
 \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
 %----------------------------------------------
 % gas dynamics
-\nomenclature{$A$}{Cross-sectional area of nozzle
-  \nomunit{\,\si{\meter\squared}}}
-\nomenclature{$p$}{Gas pressure
-  \nomunit{\,\si{\kilo\pascal}}}
-\nomenclature{$v$}{Gas flow velocity
-  \nomunit{\,\si{\meter\per\second}}}
-\nomenclature{$\dot{m}$}{Gas mass flow rate
+% \nomenclature{$A$}{Cross-sectional area of nozzle
+%   \nomunit{\,\si{\meter\squared}}}
+% \nomenclature{$p$}{Gas pressure
+%   \nomunit{\,\si{\kilo\pascal}}}
+% \nomenclature{$v$}{Gas flow velocity
+%   \nomunit{\,\si{\meter\per\second}}}
+\nomenclature{$\dot{m}$}{Mass flow rate
   \nomunit{\,\si{\kilo\gram\per\second}}}
 % \nomenclature{$\alpha$}{Diverging nozzle half-angle
 %   \nomunit{\,\si{\deg}}}
 % rocket equations
-\nomenclature{$F$}{Thrust
-  \nomunit{\,\si{\newton}}}
-\nomenclature{$I_{sp}$}{Specific impulse
-  \nomunit{\,\si{\second}}}
+% \nomenclature{$F$}{Thrust
+%   \nomunit{\,\si{\newton}}}
+% \nomenclature{$I_{sp}$}{Specific impulse
+%   \nomunit{\,\si{\second}}}
 \nomenclature{$g_0$}{Standard acceleration due to gravity
   \nomunit{\,\SI{9.81}{\meter\per\second\squared}}}
-\nomenclature{\sigma_m}{Mean Standard Error}
-  \nomunit{\,[-]}
-\nomenclature{\sigma}{Standard Deviation of a Sample}
-  \nomunit{\,[-]}
+\nomenclature{$\sigma_m$}{Mean standard error}
+\nomenclature{$\sigma$}{Standard deviation of a sample}
 \printnomenclature{}
 
 \section{Introduction}
@@ -310,7 +309,9 @@ Acquiring data for these metrics would only require two analog input channels an
 Both devices were also capable of generating an output which would be sufficient to actuate the transistors, which in turn activate the PCU and propellant solenoid, so this parameter was not taken into consideration during device selection.
 Initially the DAQ was configured to send control commands to activate and deactivate the PCU and solenoid, but this was later removed due to errors encountered during testing. Toggle switches were then mounted to the front of the server chassis to manually control the solenoid and PCU.
 
-The test engineer starts and stops recording a test data set with the VI (see~\autoref{fig:VI-frontpanel}) from a computer connected to the test stand.
+The test engineer starts and stops recording a test data set with the VI
+ % (see~\autoref{fig:VI-frontpanel})
+from a computer connected to the test stand.
 Once the proper channels are selected for data acquisition (analog inputs), the DAQ parameters may be chosen (i.e.\ sample rate \& number of samples per channel).
 The test engineer may also choose whether to save test data.
 After a data set is collected, it is displayed on an amplitude versus time plot.
@@ -409,7 +410,10 @@ Additional measurement error is suspected to be caused by electromagnetic interf
 
 A Kaiser window FIR filter was applied to the data to smooth out noise spikes.
 Some large spikes were not removed by the filtering, so windows were then also applied to ensure clean data.
-An example of the unfiltered and filtered data, as well as the windows applied to remove the remaining anomalies is shown in~\autoref{fig:raw-data}. The results of filtering the calibration and cold-fire data is shown in~\autoref{fig:other-raw-data}. While the filter did smooth out the results for these conditions, it left a large amount of low-frequency sinusoidal noise. This filtering did not adjust the averages of these data sets significantly, and so these data sets were left unfiltered for analysis in order to be computationally efficient.
+An example of the unfiltered and filtered data, as well as the windows applied to remove the remaining anomalies is shown in~\autoref{fig:raw-data}.
+The results of filtering the calibration and cold-fire data is shown in~\autoref{fig:other-raw-data}.
+While the filter did smooth out the results for these conditions, it left a large amount of low-frequency sinusoidal noise.
+This filtering did not adjust the averages of these data sets significantly, and so these data sets were left unfiltered for analysis in order to be computationally efficient.
 
 % Low-frequency vibrations from the environment itself may also play a role since the test stand is located within the RIT Kate Gleason College of Engineering machine shop, where numerous lathes, mills, and other heavy machinery operate.
 % FS = 6kg = 6000g = 58860mN
@@ -433,7 +437,7 @@ An example of the unfiltered and filtered data, as well as the windows applied t
 
 \begin{figure}
   \includegraphics[width=\linewidth]{figs/other-raw-data.png}
-  \caption{One second sets of Calibration and Cold-Fire data showing results of filtering on sinusoidal noise}
+  \caption{One second sets of calibration and cold-fire data showing results of filtering on sinusoidal noise.}
 \label{fig:other-raw-data}
 \end{figure}
 
@@ -461,20 +465,20 @@ Each data set was averaged and these averages are shown in~\autoref{tab:test-mea
   \end{tabular}
 \end{table}
 
-To obtain the thrust average and errors of each test condition, the mean output voltages of all 12 hot-fire and all 16 cold-fire tests were averaged separately, and a 95\% error bound for each test condition was created using 1.96 times the standard error of each group. These errors for sample size N were calculated as
+To obtain the thrust average and errors of each test condition, the mean output voltages of all 12 hot-fire and all 16 cold-fire tests were averaged separately, and a 95\% error bound for each test condition was created using 1.96 times the standard error of each group.
+These errors for sample size N were calculated as
 \begin{equation}
 \label{eq:stderr}
   \sigma_m = \frac{\sigma}{\sqrt(N)}
 \end{equation}
-These means and standard errors are plotted as horizontal lines on~\autoref{fig:curve}, which can then be traced back to where they meet with the linear calibration. For the lower bound of thrust, the lower bound of each test condition voltage is matched with the upper bound of the linear calibration, and for the upper bound of thrust the upper bound voltage of each test condition is matched with the lower bound of the linear calibration.
+These means and standard errors are plotted as horizontal lines on~\autoref{fig:curve}, which can then be traced back to where they meet with the linear calibration.
+For the lower bound of thrust, the lower bound of each test condition voltage is matched with the upper bound of the linear calibration, and for the upper bound of thrust the upper bound voltage of each test condition is matched with the lower bound of the linear calibration.
 This provides an range of thrust values taking into account 95\% confidence on both the test measurements as well as the calibration itself.
 
 Metrics on the true performance of the thruster is inconclusive.
 Claiming thrust and specific impulse results from these data would be highly uncertain and potentially misleading.
 However, the data shows that thrust for tests with and without the arc engaged are statistically different.
 While the true performance can not be quantitatively determined, it is clear that the qualitative goal of achieving a change in performance over cold gas propulsion by ionizing propellant with an electric arc has been met.
-
-
 
 % \begin{figure}
 %   \includegraphics[width=\linewidth]{figs/tareload.png}
@@ -491,20 +495,28 @@ While the true performance can not be quantitatively determined, it is clear tha
 % \end{figure}
 
 \section{Conclusions}
-The system was visually observed to be ionizing the gas in operation. The characteristic glows of nitrogen and argon were both seen during testing with each respective gas, and so qualitatively the system can be said to be working.
+The system was visually observed to be ionizing the gas in operation. The characteristic glows of nitrogen and argon were both seen during testing with each respective gas, and so qualitatively the system achieves its goal of ionizing propellants.
+
+The exhaust gasses were observed to partially ionize when supplied propellant flow rate exceeded \SI{22}{CFH}.
+Coupled with the heat addition by electric arc in the throat of the nozzle, this indicates that the flow may be partially choked under some uncontrolled test conditions.
+The current test stand and instrumentation package do not provide sufficient data to determine if the flow becomes fully choked at the nozzle's throat.
+If the exhaust is partially choked, then some of the gas flow reaches sonic speeds while other regions do not, and this scenario may only be modeled computationally.
 
 While it is impossible to draw exact thrust values from the data collected, the difference in measured thrust between the hot-fire and cold-fire test conditions is significant.
 In three out of four rounds of testing, the hot-fire condition out-performed the cold-fire condition.
 Using MATLAB software, a null hypothesis of both overall data sets coming from populations with equal means is rejected at the 1\% significance level by both a standard T-test as well as a Kruskal-Wallis test of variance.
 Since the data sets were taken sequentially, this suggests there is a consistent difference between the average thrust measured under each condition.
-An important point to note is that these hypothesis are rejected by combining all raw cold-fire data into one set, and all filtered hot-fire data into one set. If the same tests are run on arrays containing the means of each individual data set, the null hypothesis cannot be rejected as there is approximately a 22\% chance of each sample coming from populations with the equal means.
+An important point to note is that these hypothesis are rejected by combining all raw cold-fire data into one set, and all filtered hot-fire data into one set.
+If the same tests are run on arrays containing the means of each individual data set, the null hypothesis cannot be rejected as there is approximately a 22\% chance of each sample coming from populations with the equal means.
 As arcjet technology has been well researched and this has previously been shown to be the case, this result is consistent with other published research and the teams expectations.
 
 Should the calibration trend and thrust averages hold, the thrust benefit of hot-fire over cold is
 \begin{equation}
   \Bigg(\frac{6.377 \text{[mN]}}{2.865 \text{[mN]}} - 1\Bigg)\times100\% = 122\%
   \end{equation}
-This is similar in magnitude to the 200\% gain claimed by previous arcjet thruster systems~\cite{sutton2010rocket}. However, due to the noise and error present in the system and measurements, this number cannot be claimed as a true result and more (and more precise) testing would need to be done to discern if that number is factual.
+This is similar in magnitude to the 200\% gain claimed by previous arcjet thruster systems~\cite{sutton2010rocket}.
+However, due to the noise and error present in the system and measurements, this number cannot be claimed as a true result.
+More testing and more precise measurements are needed to discern the actual change in thrust and specific impulse over cold-gas propulsion.
 
 \section{Recommendations}
 % Evaluate the success of the project and make recommendations for improving it.
@@ -515,16 +527,39 @@ The NI myDAQ device provides an adequate sampling rate and resolution for this t
 The downfall of the data acquisition portion of this application is primarily due to the use of an imprecise instrument.
 The sensor used had a force rating of \SI{6}{\kilo\gram} $\pm$ 10\%, whereas the ideal solution would be to use a sensor with a maximum rating of \SI{1}{\kilo\gram} $\pm$ 0.5\% or similar.
 Low force sensor such as this, however, cost in excess of \$1000 and as such were deemed too expensive for the budget of this project.
-Further, shielded wire could be used to prevent electrical noise, however the noise in the hot-fire data files was successfully filtered out and the dominant noise in cold-fire test data was sinusoidal vibrations around \SI{30}{Hz} from the machine shop environment. Reducing or eliminating these vibrations would significantly improve test accuracy.
+
+Shielded wire could be used to prevent electrical noise, however the noise in the hot-fire data files was successfully filtered out and the dominant noise in cold-fire test data was sinusoidal vibrations around \SI{30}{Hz} from the machine shop environment.
+Reducing or eliminating these vibrations would significantly improve test accuracy.
+
 \subsection{Telemetry and Test Environment}
 Robust characterization of the thruster would only be possible with improved sensors, not only for thrust but also for temperatures of the gas and physical system.
-It may be possible to show in-space performance by testing the system in a low-pressure environmental chamber. Further, while the oil-impregnated bronze used as a rotational shaft in the test stand design seemed to function adequately, a ball-bearing design would be more appropriate and might reduce any possible rotational friction.
+It may be possible to show in-space performance by testing the system in a low-pressure environmental chamber.
+
+The oil-impregnated bronze used as a rotational shaft in the test stand design seemed to function adequately, but a ball-bearing design would be more appropriate and might reduce any possible rotational friction.
+
 \subsection{Thruster Design}
-The high-voltage electrode was late in the design once it became clear it was needed to prime the gas. Consequently, the alignment hole drilled through the side of the insulator was a very temporary fix. If the placement of the HV electrode in the disc insulator is to remain in the future, either the insulator should be thickened, or another local insulation method should be pursued to prevent unwanted arcing that was sometimes observed between the HV electrode and the nozzle or stainless steel body.
-The flow rate observed during testing was \SI{20--25}{CFH}. This is higher than what is reported in similar systems and could end up limiting the maximum specific impulse of the thruster. Interestingly, there was little observed difference between a nozzle with a \SI{.050}{\inch} throat and a nozzle with the \SI{.025}{\inch} throat. A third nozzle could be made with an \SI{.013}{\inch} throat ($\#$80 drill) to see if the flow can be more effectively limited.
+The high-voltage electrode was late in the design once it became clear it was needed to prime the gas.
+Consequently, the alignment hole drilled through the side of the insulator was a very temporary fix.
+If the placement of the HV electrode in the disc insulator is to remain in the future, either the insulator should be thickened, or another local insulation method should be pursued to prevent unwanted arcing that was sometimes observed between the HV electrode and the nozzle or stainless steel body.
+
+The flow rate observed during testing was 20--25\si{CFH}.
+This is higher than what is reported in similar systems and could end up limiting the maximum specific impulse of the thruster.
+Interestingly, there was little observed difference between a nozzle with a \SI{.050}{in} diameter throat and a nozzle with the \SI{.025}{in} diameter throat.
+% A third nozzle could be made with an \SI{.013}{in} throat ($\#$80 drill) to see if the flow can be more effectively limited.
+
+Ideally, nozzle design should be driven by theoretical performance based on analysis or simulation.
+The team recommends development of a robust theoretical model of the flow and heat transfer in this electrothermal system to inform future development.
+The ideal nozzle profile would choke the flow prior to the diverging section, and diverge along a spline rather than a conical section.
+
+
 \subsection{Control and Circuitry}
-Originally, the PCU and solenoid were designed to be controlled by MOSFET via a \SI{5}{\volt} output signal from the DAQ, thus allowing the operator to be in a different room than the test setup. The MOSFETs selected consistently shorted over the course of testing for unknown reasons. Given when this problem was identified, toggle switches were judged to be an acceptable risk to get the system properly functioning in time. In the future, a more robust control circuit would allow remote activation as originally intended and would lead to much safer operation.
-While the hot water heater elements served adequately as power resistors, they heated up extremely quickly (\SI{15}{\celsius\per\sec}) and warped under thermal load. The heater elements have a finite lifespan in air, and a more permanent cooling or other resistive solution could be designed in the future.
+Originally, the PCU and solenoid were designed to be controlled by MOSFET via a \SI{5}{\volt} output signal from the DAQ, thus allowing the operator to be in a different room than the test setup.
+The MOSFETs selected consistently shorted over the course of testing for unknown reasons.
+Given when this problem was identified, toggle switches were judged to be an acceptable risk to get the system properly functioning in time.
+In the future, a more robust control circuit would allow remote activation as originally intended and would lead to much safer operation.
+
+While the hot water heater elements served adequately as power resistors, they heated up extremely quickly (\SI{15}{\celsius\per\sec}) and warped under thermal load.
+The heater elements have a finite lifespan in air, and a more permanent cooling or other resistive solution could be designed in the future.
 
 
 \section*{Acknowledgments}
@@ -538,12 +573,10 @@ The team thanks Mr.~Vincent Burolla and Dr.~Dorin Patru for their unwavering sup
 \appendices{}
 \counterwithin{figure}{section}
 \section{PCU Schematic}
-\begin{figure}[h!]
-  \includegraphics[angle=90,height=.8\vsize,keepaspectratio]{figs/PCU_Schematic_No_AI_4_27_new.png}
+\begin{figure}[h]
+  \includegraphics[height=.8\vsize,keepaspectratio]{figs/PCU_Schematic_No_AI_4_27_rotated.png}
   \caption{Electrical diagram of the PCU.}
 \label{fig:pcu-schematic}
-
-
 \end{figure}
 
 %\section{Data Aqcuisition \& Control Virtual Interface}
