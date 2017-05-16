@@ -1,4 +1,4 @@
-# P17101 - Prototype Arcjet Satellite Thruster
+# P17101 - Design of a 1kW Arcjet Thruster
 ### Multidisciplinary Senior Design
 Kate Gleason College of Engineering, Rochester Institute of Technology, Rochester, NY, USA
 
